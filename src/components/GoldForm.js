@@ -197,7 +197,7 @@ function GoldForm() {
               id="standard-karat"
               label="Karat"
               name="karat"
-              defaultValue={concentrations.gold * 4.166666666666667}
+              defaultValue={customerValues.karat}
               onChange={handleCustomerDetails}
             />
             <TextField id="standard-total" label="Total" />
