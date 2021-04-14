@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react";
 import PropTypes from "prop-types";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -81,10 +82,11 @@ function GoldForm() {
     customerName: "",
     srNumber: 0,
     sampleType: "Dhali",
-    weight: "0.000",
+    weight: (0.0).toFixed(3),
     dateTime: moment(Date().toLocaleString()).format("YYYY-MM-DDThh:mm"),
     karat: "",
   });
+
   const [concentrations, setConcentrations] = React.useState({
     gold: "0.00",
     silver: "0.00",
@@ -119,7 +121,7 @@ function GoldForm() {
     const { value } = e.target;
     setConcentrations({
       ...concentrations,
-      [e.target.name]: value,
+      [e.target.name]: parseFloat(value).toFixed(2),
     });
   };
   const handleCustomerDetails = (e) => {
@@ -129,6 +131,67 @@ function GoldForm() {
       [e.target.name]: value,
     });
   };
+
+  const handleReset = () => {
+    window.location.reload();
+  };
+
+  React.useEffect(() => {
+    setCustomerValues({
+      ...customerValues,
+      karat: (concentrations.gold / 4.166667).toFixed(2),
+    });
+  }, [concentrations.gold]);
+
+  React.useEffect(() => {
+    setConcentrations({
+      ...concentrations,
+      copper: (
+        100.0 -
+        parseFloat(
+          parseFloat(concentrations.gold) +
+            parseFloat(concentrations.silver) +
+            parseFloat(concentrations.zinc) +
+            parseFloat(concentrations.cadmium) +
+            parseFloat(concentrations.iridium) +
+            parseFloat(concentrations.ruthenium) +
+            parseFloat(concentrations.osmium) +
+            parseFloat(concentrations.nickel) +
+            parseFloat(concentrations.rhodium) +
+            parseFloat(concentrations.manganese) +
+            parseFloat(concentrations.tin) +
+            parseFloat(concentrations.lead) +
+            parseFloat(concentrations.platinum) +
+            parseFloat(concentrations.iron) +
+            parseFloat(concentrations.bismuth) +
+            parseFloat(concentrations.palladium) +
+            parseFloat(concentrations.cobalt) +
+            parseFloat(concentrations.rhenium) +
+            parseFloat(concentrations.tungsten)
+        )
+      ).toFixed(2),
+    });
+  }, [
+    concentrations.gold,
+    concentrations.silver,
+    concentrations.zinc,
+    concentrations.cadmium,
+    concentrations.iridium,
+    concentrations.ruthenium,
+    concentrations.osmium,
+    concentrations.nickel,
+    concentrations.rhodium,
+    concentrations.manganese,
+    concentrations.tin,
+    concentrations.lead,
+    concentrations.platinum,
+    concentrations.iron,
+    concentrations.bismuth,
+    concentrations.palladium,
+    concentrations.cobalt,
+    concentrations.rhenium,
+    concentrations.tungsten,
+  ]);
   return (
     <React.Fragment>
       <Paper className={classes.paper}>
@@ -197,10 +260,10 @@ function GoldForm() {
               id="standard-karat"
               label="Karat"
               name="karat"
-              defaultValue={customerValues.karat}
+              value={customerValues.karat}
               onChange={handleCustomerDetails}
+              disabled
             />
-            <TextField id="standard-total" label="Total" />
           </form>
 
           <Grid container spacing={3}>
@@ -227,8 +290,9 @@ function GoldForm() {
                   variant="outlined"
                   label="Copper"
                   name="copper"
-                  defaultValue={concentrations.copper}
+                  value={concentrations.copper}
                   onChange={handleConcentrationsChange}
+                  disabled
                 />{" "}
                 <TextField
                   id="standard-zinc"
@@ -390,7 +454,12 @@ function GoldForm() {
                   />
                 </RadioGroup>
               </FormControl>
-              <Button size="large" variant="contained" color="secondary">
+              <Button
+                size="large"
+                variant="contained"
+                color="secondary"
+                onClick={handleReset}
+              >
                 Reset
               </Button>
             </Grid>
