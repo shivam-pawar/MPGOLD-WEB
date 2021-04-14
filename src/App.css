@@ -1,0 +1,101 @@
+.main-report {
+  margin-left: 50px;
+}
+.customer-details {
+  width: 100%;
+}
+.name-time-sr {
+  width: 100%;
+  display: flex;
+}
+.customer-name {
+  display: flex;
+  min-width: 30%;
+}
+.report-time {
+  display: flex;
+  min-width: 20%;
+}
+.customer-sr {
+  display: flex;
+  min-width: 50%;
+}
+.date-sample {
+  width: 100%;
+  display: flex;
+  margin-top: 10px;
+}
+.report-date {
+  min-width: 30%;
+}
+.customer-sample {
+  min-width: 70%;
+}
+.first-separator {
+  margin-top: 10px;
+}
+.gold-karat-weight {
+  width: 100%;
+  display: flex;
+  margin-top: 10px;
+}
+.std-gold {
+  display: flex;
+  min-width: 30%;
+}
+.std-karat {
+  display: flex;
+  min-width: 20%;
+}
+.std-weight {
+  display: flex;
+  min-width: 50%;
+}
+.first-separator {
+  width: 70%;
+}
+/* .vl {
+  border-left: 1px solid black;
+  height: 155px;
+  margin-left: 15%;
+  margin-top: -10px;
+}
+.v2 {
+  border-left: 1px solid black;
+  height: 155px;
+  margin-left: 33%;
+  margin-top: -10px;
+} */
+.std-result-set {
+  width: 100%;
+  display: flex;
+}
+.first-block-element {
+  display: inline;
+  width: 10%;
+}
+.first-block-element-concentration {
+  display: inline;
+  width: 20%;
+  margin-right: 20px;
+}
+.second-block-element {
+  display: inline;
+  width: 20%;
+  margin-left: -100px;
+}
+.second-block-element-concentration {
+  display: inline;
+  width: 20%;
+  margin-left: -100px;
+}
+.third-block-element {
+  display: inline;
+  width: 20%;
+  margin-left: -70px;
+}
+.third-block-element-concentration {
+  display: inline;
+  width: 20%;
+  margin-left: -100px;
+}

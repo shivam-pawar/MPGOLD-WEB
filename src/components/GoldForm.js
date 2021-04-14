@@ -75,6 +75,12 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     flexGrow: 1,
   },
+  stnds: {
+    padding: theme.spacing(0),
+    textAlign: "left",
+    color: "black",
+    backgroundColor: "transparent",
+  },
 }));
 function GoldForm() {
   const classes = useStyles();
@@ -470,32 +476,103 @@ function GoldForm() {
         <Grid container spacing={3}>
           <Grid item xs={10} className={classes.preview}>
             <div id="something">
-              <h1>Report Type: {isGold.toUpperCase()}</h1>
-              <p>Customer Name: {customerValues.customerName}</p>
-              <p>SR Number: {customerValues.srNumber}</p>
-              <p>Weight: {customerValues.weight}</p>
-              <p>Sample Type: {customerValues.sampleType}</p>
-              <p>
-                Date Time:{" "}
-                {moment(customerValues.dateTime).format(
-                  "Do MMMM YY, h:mm:ss a"
-                )}
-              </p>
-              <p>Karat: {customerValues.karat}</p>
-              <p>
-                gold: {concentrations.gold} silver: {concentrations.silver}{" "}
-                copper: {concentrations.copper} zinc: {concentrations.zinc}{" "}
-                cadmium: {concentrations.cadmium} iridium:{" "}
-                {concentrations.iridium} ruthenium: {concentrations.ruthenium}{" "}
-                osmium: {concentrations.osmium} nickel: {concentrations.nickel}{" "}
-                rhodium: {concentrations.rhodium} manganese:{" "}
-                {concentrations.manganese} tin: {concentrations.tin} lead:{" "}
-                {concentrations.lead}, platinum: {concentrations.platinum} iron:{" "}
-                {concentrations.iron} bismuth: {concentrations.bismuth}{" "}
-                palladium: {concentrations.palladium} cobalt:{" "}
-                {concentrations.cobalt} rhenium: {concentrations.rhenium}{" "}
-                tungsten: {concentrations.tungsten}
-              </p>
+              <div className="main-report" id="main-report">
+                <div className="customer-details">
+                  <div className="name-time-sr">
+                    <div className="customer-name">
+                      Name: {customerValues.customerName}
+                    </div>
+                    <div className="report-time">
+                      Time:{" "}
+                      {moment(Date().toLocaleString()).format("hh:mm:ss a")}
+                    </div>
+                    <div className="customer-sr">
+                      Serial No. : {customerValues.srNumber}
+                    </div>
+                  </div>
+                  <div className="date-sample">
+                    <div className="report-date">
+                      Date:{" "}
+                      {moment(Date().toLocaleString()).format("Do MMMM YYYY")}
+                    </div>
+                    <div className="customer-sample">
+                      Sample: {customerValues.sampleType}
+                    </div>
+                  </div>
+                </div>
+                <div className="first-separator">
+                  <hr></hr>
+                </div>
+                <div className="gold-karat-weight">
+                  <div className="std-gold">GOLD: {concentrations.gold}</div>
+                  <div className="std-karat">KARAT: {customerValues.karat}</div>
+                  <div className="std-weight">
+                    WEIGHT: {customerValues.weight} gram
+                  </div>
+                </div>
+                <div className="first-separator">
+                  <hr></hr>
+                </div>
+                <div className="std-result-set">
+                  <div className="first-block-element">
+                    <div>Silver</div>
+                    <div>Copper</div>
+                    <div>Zinc</div>
+                    <div>Cadmium</div>
+                    <div>Iridium</div>
+                    <div>Ruthenium</div>
+                  </div>
+
+                  <div className="first-block-element-concentration">
+                    <div>: {concentrations.silver}</div>
+                    <div>: {concentrations.copper}</div>
+                    <div>: {concentrations.zinc}</div>
+                    <div>: {concentrations.cadmium}</div>
+                    <div>: {concentrations.iridium}</div>
+                    <div>: {concentrations.ruthenium}</div>
+                  </div>
+
+                  <div className="second-block-element">
+                    <div>Osmium</div>
+                    <div>Nickel</div>
+                    <div>Rhodium</div>
+                    <div>Manganese</div>
+                    <div>Tin</div>
+                    <div>Lead</div>
+                  </div>
+
+                  <div className="second-block-element-concentration">
+                    <div>: {concentrations.osmium}</div>
+                    <div>: {concentrations.nickel}</div>
+                    <div>: {concentrations.rhodium}</div>
+                    <div>: {concentrations.manganese}</div>
+                    <div>: {concentrations.tin}</div>
+                    <div>: {concentrations.lead}</div>
+                  </div>
+
+                  <div className="vl"></div>
+
+                  <div className="third-block-element">
+                    <div>Platinum</div>
+                    <div>Iron</div>
+                    <div>Bismuth</div>
+                    <div>Cobalt</div>
+                    <div>Rhenium</div>
+                    <div>Tungsten</div>
+                  </div>
+
+                  <div className="third-block-element-concentration">
+                    <div>: {concentrations.platinum}</div>
+                    <div>: {concentrations.iron}</div>
+                    <div>: {concentrations.bismuth}</div>
+                    <div>: {concentrations.cobalt}</div>
+                    <div>: {concentrations.rhenium}</div>
+                    <div>: {concentrations.tungsten}</div>
+                  </div>
+
+                  <div className="v2"></div>
+                </div>
+              </div>
             </div>
           </Grid>
           <Grid item xs={2} className={classes.result}>
@@ -503,7 +580,13 @@ function GoldForm() {
               size="large"
               variant="contained"
               color="primary"
-              onClick={() => printJS("something", "html")}
+              onClick={() =>
+                printJS({
+                  printable: "something",
+                  type: "html",
+                  targetStyles: ["*"],
+                })
+              }
             >
               Print
             </Button>
