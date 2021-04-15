@@ -18,6 +18,7 @@ import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import printJS from "print-js";
 import moment from "moment";
+import Divider from "@material-ui/core/Divider";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -75,11 +76,18 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     flexGrow: 1,
   },
-  stnds: {
-    padding: theme.spacing(0),
-    textAlign: "left",
-    color: "black",
-    backgroundColor: "transparent",
+  separator: {
+    width: "70%",
+    border: `1px solid black`,
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.text.secondary,
+    "& svg": {
+      margin: theme.spacing(1.5),
+    },
+    "& hr": {
+      margin: theme.spacing(0, 0.5),
+    },
   },
 }));
 function GoldForm() {
@@ -475,7 +483,7 @@ function GoldForm() {
       <TabPanel value={value} index={1}>
         <Grid container spacing={3}>
           <Grid item xs={10} className={classes.preview}>
-            <div id="something">
+            <div id="something" className="font-settings">
               <div className="main-report" id="main-report">
                 <div className="customer-details">
                   <div className="name-time-sr">
@@ -500,23 +508,41 @@ function GoldForm() {
                     </div>
                   </div>
                 </div>
-                <div className="first-separator">
-                  <hr></hr>
+                <div className={classes.separator} id="first-separator">
+                  <Divider orientation="vertical" flexItem />
                 </div>
                 <div className="gold-karat-weight">
-                  <div className="std-gold">GOLD: {concentrations.gold}</div>
-                  <div className="std-karat">KARAT: {customerValues.karat}</div>
+                  {isGold === "gold" ? (
+                    <div className="std-gold">
+                      {"GOLD: " + concentrations.gold + " %"}
+                    </div>
+                  ) : (
+                    <div className="std-gold">
+                      {"SILVER: " + concentrations.silver + " %"}
+                    </div>
+                  )}
+                  {isGold === "gold" ? (
+                    <div className="std-karat">
+                      KARAT: {customerValues.karat + " K"}
+                    </div>
+                  ) : (
+                    ""
+                  )}
                   <div className="std-weight">
-                    WEIGHT: {customerValues.weight} gram
+                    WEIGHT: {customerValues.weight + " gram"}
                   </div>
                 </div>
-                <div className="first-separator">
-                  <hr></hr>
+                <div className={classes.separator} id="second-separator">
+                  <Divider orientation="vertical" flexItem />
                 </div>
                 <div className="std-result-set">
                   <div className="first-block-element">
-                    <div>Silver</div>
-                    <div>Copper</div>
+                    {isGold === "gold" ? (
+                      <div className="font-settings">Silver</div>
+                    ) : (
+                      <div className="font-settings">Gold</div>
+                    )}
+                    <div className="font-settings">Copper</div>
                     <div>Zinc</div>
                     <div>Cadmium</div>
                     <div>Iridium</div>
@@ -524,7 +550,12 @@ function GoldForm() {
                   </div>
 
                   <div className="first-block-element-concentration">
-                    <div>: {concentrations.silver}</div>
+                    {isGold === "gold" ? (
+                      <div>: {concentrations.silver}</div>
+                    ) : (
+                      <div>: {concentrations.gold}</div>
+                    )}
+
                     <div>: {concentrations.copper}</div>
                     <div>: {concentrations.zinc}</div>
                     <div>: {concentrations.cadmium}</div>
@@ -571,6 +602,128 @@ function GoldForm() {
                   </div>
 
                   <div className="v2"></div>
+                </div>
+              </div>
+              <div id="something" className="font-settings">
+                <div className="second-main-report" id="main-report">
+                  <div className="customer-details">
+                    <div className="name-time-sr">
+                      <div className="customer-name">
+                        Name: {customerValues.customerName}
+                      </div>
+                      <div className="report-time">
+                        Time:{" "}
+                        {moment(Date().toLocaleString()).format("hh:mm:ss a")}
+                      </div>
+                      <div className="customer-sr">
+                        Serial No. : {customerValues.srNumber}
+                      </div>
+                    </div>
+                    <div className="date-sample">
+                      <div className="report-date">
+                        Date:{" "}
+                        {moment(Date().toLocaleString()).format("Do MMMM YYYY")}
+                      </div>
+                      <div className="customer-sample">
+                        Sample: {customerValues.sampleType}
+                      </div>
+                    </div>
+                  </div>
+                  <div className={classes.separator} id="first-separator">
+                    <Divider orientation="vertical" flexItem />
+                  </div>
+                  <div className="gold-karat-weight">
+                    {isGold === "gold" ? (
+                      <div className="std-gold">
+                        {"GOLD: " + concentrations.gold + " %"}
+                      </div>
+                    ) : (
+                      <div className="std-gold">
+                        {"SILVER: " + concentrations.silver + " %"}
+                      </div>
+                    )}
+                    {isGold === "gold" ? (
+                      <div className="std-karat">
+                        KARAT: {customerValues.karat + " K"}
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                    <div className="std-weight">
+                      WEIGHT: {customerValues.weight + " gram"}
+                    </div>
+                  </div>
+                  <div className={classes.separator} id="second-separator">
+                    <Divider orientation="vertical" flexItem />
+                  </div>
+                  <div className="std-result-set">
+                    <div className="first-block-element">
+                      {isGold === "gold" ? (
+                        <div className="font-settings">Silver</div>
+                      ) : (
+                        <div className="font-settings">Gold</div>
+                      )}
+                      <div className="font-settings">Copper</div>
+                      <div>Zinc</div>
+                      <div>Cadmium</div>
+                      <div>Iridium</div>
+                      <div>Ruthenium</div>
+                    </div>
+
+                    <div className="first-block-element-concentration">
+                      {isGold === "gold" ? (
+                        <div>: {concentrations.silver}</div>
+                      ) : (
+                        <div>: {concentrations.gold}</div>
+                      )}
+
+                      <div>: {concentrations.copper}</div>
+                      <div>: {concentrations.zinc}</div>
+                      <div>: {concentrations.cadmium}</div>
+                      <div>: {concentrations.iridium}</div>
+                      <div>: {concentrations.ruthenium}</div>
+                    </div>
+
+                    <div className="second-block-element">
+                      <div>Osmium</div>
+                      <div>Nickel</div>
+                      <div>Rhodium</div>
+                      <div>Manganese</div>
+                      <div>Tin</div>
+                      <div>Lead</div>
+                    </div>
+
+                    <div className="second-block-element-concentration">
+                      <div>: {concentrations.osmium}</div>
+                      <div>: {concentrations.nickel}</div>
+                      <div>: {concentrations.rhodium}</div>
+                      <div>: {concentrations.manganese}</div>
+                      <div>: {concentrations.tin}</div>
+                      <div>: {concentrations.lead}</div>
+                    </div>
+
+                    <div className="vl"></div>
+
+                    <div className="third-block-element">
+                      <div>Platinum</div>
+                      <div>Iron</div>
+                      <div>Bismuth</div>
+                      <div>Cobalt</div>
+                      <div>Rhenium</div>
+                      <div>Tungsten</div>
+                    </div>
+
+                    <div className="third-block-element-concentration">
+                      <div>: {concentrations.platinum}</div>
+                      <div>: {concentrations.iron}</div>
+                      <div>: {concentrations.bismuth}</div>
+                      <div>: {concentrations.cobalt}</div>
+                      <div>: {concentrations.rhenium}</div>
+                      <div>: {concentrations.tungsten}</div>
+                    </div>
+
+                    <div className="v2"></div>
+                  </div>
                 </div>
               </div>
             </div>
