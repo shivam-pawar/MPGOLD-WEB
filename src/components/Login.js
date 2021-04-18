@@ -58,9 +58,7 @@ function Login() {
   };
   return (
     <div className="App">
-      {email === "mptunch@gmail.com" ||
-      email === "shivampawar1038@gmail.com" ||
-      email === "yogeshpawar223@gmail.com" ? (
+      {email ? (
         <>
           <Header user={email} />
           <App />
