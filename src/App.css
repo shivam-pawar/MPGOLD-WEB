@@ -127,3 +127,15 @@
   background-color: lemonchiffon;
   border: 1px solid black;
 }
+.login-main {
+  width: 100%;
+  display: flex;
+}
+.login-main-img {
+  width: 50%;
+  display: flex;
+}
+.login-inputs {
+  width: 100%;
+  display: block;
+}
