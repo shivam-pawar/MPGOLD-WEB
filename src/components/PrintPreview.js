@@ -4,6 +4,7 @@ import Divider from "@material-ui/core/Divider";
 import { Button, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
+import firebaseDB from "../config/firebase";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,6 +45,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function PrintPreview({ customerValues, concentrations, isGold }) {
+  const handlePostRequest = () => {
+    const records = firebaseDB.ref("mpgold-web-default-rtdb");
+    const dataToPush = {
+      serial_number: customerValues.srNumber,
+      report_date: customerValues.dateTime,
+      customer_name: customerValues.customerName,
+      sample_type: customerValues.sampleType,
+      weight: customerValues.weight,
+      gold_purity: concentrations.gold,
+      silver_purity: concentrations.silver,
+    };
+    try {
+      records.push(dataToPush);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
   const classes = useStyles();
   return (
     <Grid container spacing={3}>
@@ -289,13 +307,14 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
           size="large"
           variant="contained"
           color="primary"
-          onClick={() =>
+          onClick={() => {
             printJS({
               printable: "something",
               type: "html",
               targetStyles: ["*"],
-            })
-          }
+            });
+            handlePostRequest();
+          }}
         >
           Print
         </Button>
