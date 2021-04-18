@@ -7,6 +7,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import TablePagination from "@material-ui/core/TablePagination";
 import Paper from "@material-ui/core/Paper";
 import firebaseDB from "../config/firebase";
 import moment from "moment";
@@ -33,7 +34,7 @@ const StyledTableCell = withStyles((theme) => ({
     color: theme.palette.common.white,
   },
   body: {
-    fontSize: 14,
+    fontSize: 16,
   },
 }))(TableCell);
 
@@ -48,17 +49,83 @@ const StyledTableRow = withStyles((theme) => ({
 function RecordDetails() {
   const classes = useStyles();
   const [data, setData] = useState([]);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [page, setPage] = React.useState(0);
+
   useEffect(() => {
     const recordRef = firebaseDB.ref("mpgold-web-default-rtdb");
-    recordRef.on("value", (snapshot) => {
-      const records = snapshot.val();
-      const recordList = [];
-      for (let id in records) {
-        recordList.push(records[id]);
-      }
-      setData(recordList);
-    });
+    recordRef
+      .orderByChild("report_date")
+      .startAt(moment(Date().toLocaleString()).format("YYYY-MM-DD"))
+      .on("value", (snapshot) => {
+        const records = snapshot.val();
+        const recordList = [];
+        for (let id in records) {
+          recordList.push(records[id]);
+        }
+        setData(recordList);
+      });
   }, []);
+
+  const handleCustomerNameFilter = (e) => {
+    const value = e.target.value;
+    const recordRef = firebaseDB.ref("mpgold-web-default-rtdb");
+    recordRef
+      .orderByChild("customer_name")
+      .startAt(value)
+      .endAt(value + "\uf8ff")
+      .on("value", (snapshot) => {
+        const records = snapshot.val();
+        const recordList = [];
+        for (let id in records) {
+          recordList.push(records[id]);
+        }
+        setData(recordList);
+      });
+  };
+
+  const handleSRNumberFilter = (e) => {
+    const value = e.target.value;
+    const recordRef = firebaseDB.ref("mpgold-web-default-rtdb");
+    recordRef
+      .orderByChild("serial_number")
+      .startAt(value)
+      .endAt(value + "\uf8ff")
+      .on("value", (snapshot) => {
+        const records = snapshot.val();
+        const recordList = [];
+        for (let id in records) {
+          recordList.push(records[id]);
+        }
+        setData(recordList);
+      });
+  };
+
+  const handleDateFilter = (e) => {
+    const value = e.target.value;
+    const recordRef = firebaseDB.ref("mpgold-web-default-rtdb");
+    recordRef
+      .orderByChild("report_date")
+      .startAt(moment(value).format("YYYY-MM-DD"))
+      .endAt(value + "\uf8ff")
+      .on("value", (snapshot) => {
+        const records = snapshot.val();
+        const recordList = [];
+        for (let id in records) {
+          recordList.push(records[id]);
+        }
+        setData(recordList);
+      });
+  };
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
   return (
     <Container maxWidth="lg" className={classes.root}>
       <TextField
@@ -66,6 +133,7 @@ function RecordDetails() {
         id="standard-customerName"
         label="Search Customer"
         name="customerName"
+        onChange={handleCustomerNameFilter}
       />
       <TextField
         className="c-sr"
@@ -73,6 +141,7 @@ function RecordDetails() {
         id="standard-customerName"
         label="Search SR No."
         name="customerName"
+        onChange={handleSRNumberFilter}
       />
       <TextField
         id="datetime-local"
@@ -83,9 +152,14 @@ function RecordDetails() {
           shrink: true,
         }}
         name="dateTime"
+        onChange={handleDateFilter}
       />
       <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="customized table">
+        <Table
+          stickyHeader
+          className={classes.table}
+          aria-label="customized table"
+        >
           <TableHead>
             <TableRow>
               <StyledTableCell align="left">SR Number</StyledTableCell>
@@ -98,32 +172,43 @@ function RecordDetails() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((row) => (
-              <StyledTableRow key={row.serial_number}>
-                <StyledTableCell component="th" scope="row">
-                  {row.serial_number}
-                </StyledTableCell>
-                <StyledTableCell component="th" scope="row">
-                  {moment(row.report_date).format("DD-MM-YYYY")}
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  {row.customer_name}
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  {row.sample_type}
-                </StyledTableCell>
-                <StyledTableCell align="left">{row.weight}</StyledTableCell>
-                <StyledTableCell align="left">
-                  {row.gold_purity}
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  {row.silver_purity}
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
+            {data
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => (
+                <StyledTableRow key={row.serial_number}>
+                  <StyledTableCell component="th" scope="row">
+                    {row.serial_number}
+                  </StyledTableCell>
+                  <StyledTableCell component="th" scope="row">
+                    {moment(row.report_date).format("DD-MM-YYYY")}
+                  </StyledTableCell>
+                  <StyledTableCell align="left">
+                    {row.customer_name}
+                  </StyledTableCell>
+                  <StyledTableCell align="left">
+                    {row.sample_type}
+                  </StyledTableCell>
+                  <StyledTableCell align="left">{row.weight}</StyledTableCell>
+                  <StyledTableCell align="left">
+                    {row.gold_purity}
+                  </StyledTableCell>
+                  <StyledTableCell align="left">
+                    {row.silver_purity}
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        count={data.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onChangePage={handleChangePage}
+        onChangeRowsPerPage={handleChangeRowsPerPage}
+      />
     </Container>
   );
 }

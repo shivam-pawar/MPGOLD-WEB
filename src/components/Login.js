@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
 import { auth } from "../config/firebase";
 import App from "../App";
@@ -31,14 +31,15 @@ function Login() {
     email: "",
     password: "",
   });
+  useEffect(() => {
+    console.log("Logged in with email: ", email);
+  }, [email]);
   const [warning, setWarning] = useState("");
-  console.log("Logged in with email: ", email);
   const googleSignUp = (email, password) => {
     auth.signInWithEmailAndPassword(email, password).then(
       function (result) {
         var user = result.user;
         setEmail(user.email);
-        window.location.reload();
       },
       function (error) {
         var email = error.email;
@@ -58,14 +59,13 @@ function Login() {
   };
   return (
     <div className="App">
+      <Header user={email} />
       {email ? (
         <>
-          <Header user={email} />
           <App />
         </>
       ) : (
         <>
-          <Header />
           <div className="login-main">
             <div className="login-main-img">
               <img
