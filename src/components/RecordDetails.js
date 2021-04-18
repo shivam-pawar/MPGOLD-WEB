@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, TextField } from "@material-ui/core";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -8,6 +8,9 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import firebaseDB from "../config/firebase";
+import moment from "moment";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -23,25 +26,6 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 700,
   },
 }));
-
-const rows = [
-  {
-    serial_number: 1,
-    report_date: "01/04/2021",
-    customer_name: "Shivam",
-    sample_type: "Dhali",
-    weight: "10.800",
-    purity: "91.67",
-  },
-  {
-    serial_number: 2,
-    report_date: "02/04/2021",
-    customer_name: "Test",
-    sample_type: "Dhali",
-    weight: "12.800",
-    purity: "87.60",
-  },
-];
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -63,6 +47,18 @@ const StyledTableRow = withStyles((theme) => ({
 
 function RecordDetails() {
   const classes = useStyles();
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const recordRef = firebaseDB.ref("mpgold-web-default-rtdb");
+    recordRef.on("value", (snapshot) => {
+      const records = snapshot.val();
+      const recordList = [];
+      for (let id in records) {
+        recordList.push(records[id]);
+      }
+      setData(recordList);
+    });
+  }, []);
   return (
     <Container maxWidth="lg" className={classes.root}>
       <TextField
@@ -97,17 +93,18 @@ function RecordDetails() {
               <StyledTableCell align="left">Customer Name</StyledTableCell>
               <StyledTableCell align="left">Sample Type</StyledTableCell>
               <StyledTableCell align="left">Weight</StyledTableCell>
-              <StyledTableCell align="left">Purity</StyledTableCell>
+              <StyledTableCell align="left">Gold Purity</StyledTableCell>
+              <StyledTableCell align="left">Silver Purity</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {data.map((row) => (
               <StyledTableRow key={row.serial_number}>
                 <StyledTableCell component="th" scope="row">
                   {row.serial_number}
                 </StyledTableCell>
                 <StyledTableCell component="th" scope="row">
-                  {row.report_date}
+                  {moment(row.report_date).format("DD-MM-YYYY")}
                 </StyledTableCell>
                 <StyledTableCell align="left">
                   {row.customer_name}
@@ -116,7 +113,12 @@ function RecordDetails() {
                   {row.sample_type}
                 </StyledTableCell>
                 <StyledTableCell align="left">{row.weight}</StyledTableCell>
-                <StyledTableCell align="left">{row.purity}</StyledTableCell>
+                <StyledTableCell align="left">
+                  {row.gold_purity}
+                </StyledTableCell>
+                <StyledTableCell align="left">
+                  {row.silver_purity}
+                </StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
