@@ -1,5 +1,6 @@
 import React from "react";
 import printJS from "print-js";
+import Icon from "@material-ui/core/Icon";
 import Divider from "@material-ui/core/Divider";
 import { Button, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,12 +16,6 @@ const useStyles = makeStyles((theme) => ({
     "& > .c-name": {
       margin: theme.spacing(3),
       width: "50ch",
-    },
-  },
-  result: {
-    "& > *": {
-      width: "15ch",
-      margin: theme.spacing(2),
     },
   },
   preview: {
@@ -302,11 +297,12 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
           </div>
         </div>
       </Grid>
-      <Grid item xs={2} className={classes.result}>
+      <Grid item xs={2} style={{ marginTop: "10%", marginLeft: "-150px" }}>
         <Button
           size="large"
           variant="contained"
           color="primary"
+          startIcon={<Icon>save</Icon>}
           onClick={() => {
             printJS({
               printable: "something",
@@ -316,7 +312,7 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
             handlePostRequest();
           }}
         >
-          Print
+          Save & Print
         </Button>
       </Grid>
     </Grid>
