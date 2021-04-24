@@ -453,14 +453,28 @@ function GoldForm() {
                   />
                 </RadioGroup>
               </FormControl>
-              <Button
-                size="large"
-                variant="contained"
-                color="secondary"
-                onClick={handleReset}
-              >
-                Reset
-              </Button>
+              <div style={{ width: "100%", display: "flex" }}>
+                <div style={{ width: "40%" }}>
+                  <Button
+                    size="large"
+                    variant="contained"
+                    color="primary"
+                    onClick={(e) => handleChange(e, 1)}
+                  >
+                    Preview
+                  </Button>
+                </div>
+                <div style={{ width: "50%" }}>
+                  <Button
+                    size="large"
+                    variant="contained"
+                    color="secondary"
+                    onClick={handleReset}
+                  >
+                    Reset
+                  </Button>
+                </div>
+              </div>
             </Grid>
           </Grid>
         </Container>
