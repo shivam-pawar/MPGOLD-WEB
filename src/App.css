@@ -1,122 +1,171 @@
-.main-report {
-  margin-left: 50px;
-  margin-top: 50px;
+/* body {
+  width: 230mm;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
+  font-size: 12pt;
+  background: rgb(204, 204, 204);
 }
-.second-main-report {
-  margin-left: 50px;
-  margin-top: 150px;
-}
-.customer-details {
-  width: 100%;
-  padding-left: 5px;
-}
-.name-time-sr {
-  width: 100%;
-  display: flex;
-}
-.customer-name {
-  display: flex;
-  min-width: 30%;
-}
-.report-time {
-  display: flex;
-  min-width: 20%;
-}
-.customer-sr {
-  display: flex;
-  min-width: 50%;
-}
-.date-sample {
-  width: 100%;
-  display: flex;
-  margin-top: 10px;
-}
-.report-date {
-  min-width: 30%;
-}
-.customer-sample {
-  min-width: 70%;
-}
-.first-separator {
-  margin-top: 10px;
-}
-.gold-karat-weight {
-  width: 100%;
-  display: flex;
-  margin-top: 10px;
-  padding-left: 5px;
-}
-.std-gold {
-  display: flex;
-  min-width: 30%;
-  font-weight: bold;
-  font-size: larger;
-}
-.std-karat {
-  display: flex;
-  min-width: 20%;
-  font-weight: bold;
-  font-size: larger;
-}
-.std-weight {
-  display: flex;
-  min-width: 50%;
-  font-weight: bold;
-  font-size: larger;
-}
-#first-separator {
-  margin-bottom: 5px;
-  margin-top: 5px;
-}
-#second-separator {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-/* .vl {
-  border-left: 1px solid black;
-  height: 155px;
-  margin-left: 15%;
-  margin-top: -10px;
-}
-.v2 {
-  border-left: 1px solid black;
-  height: 155px;
-  margin-left: 33%;
-  margin-top: -10px;
+
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
 } */
-.std-result-set {
-  width: 100%;
+
+.main-page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 10mm auto;
+  background: white;
+  box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+}
+
+.copy-form {
+  padding-top: 300px;
+}
+
+.sub-page {
+  padding: 1cm;
+  height: 297mm;
+  padding-top: 150px;
+}
+
+.customer-details {
+  width: 80%;
   display: flex;
+  margin: auto;
+}
+
+.customer-name {
+  width: 40%;
+  display: inline-block;
+}
+
+.customer-time {
+  width: 30%;
+  display: inline-block;
+}
+
+.customer-sr {
+  width: 27%;
+  display: inline-block;
+}
+
+.customer-date-sample {
+  width: 80%;
+  display: flex;
+  margin: auto;
+  padding-top: 10px;
+}
+
+.customer-date {
+  width: 40%;
+  display: inline-block;
+}
+
+.customer-sample {
+  width: 40%;
+  display: inline-block;
+}
+
+.gold-karat-weight {
+  width: 80%;
+  display: flex;
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.gold {
+  width: 30%;
+  display: inline-block;
+}
+
+.karat {
+  width: 30%;
+  display: inline-block;
+}
+
+.weight {
+  width: 35%;
+  display: inline-block;
+}
+
+.concentration-block {
+  width: 80%;
+  display: flex;
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: -15px;
+}
+
+.first-block {
+  width: 30%;
+  display: inline-block;
+}
+
+.second-block {
+  width: 30%;
+  display: inline-block;
+}
+
+.third-block {
+  width: 27%;
+  display: inline-block;
+}
+
+.element-block {
+  width: 100%;
+}
+
+.elements {
+  width: 50%;
+  display: inline-block;
+}
+
+.percentage {
+  display: inline-flex;
+  width: 40%;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.vl {
+  border-left: 1px solid black;
+  height: 150px;
   padding-left: 5px;
+  padding-right: 5px;
+  margin-top: -5px
 }
-.first-block-element {
-  display: inline;
-  width: 10%;
+
+hr.separator {
+  border-top: 1px solid black;
 }
-.first-block-element-concentration {
-  display: inline;
-  width: 20%;
-  margin-right: 20px;
+
+@page {
+  size: A4;
+  margin: 0;
 }
-.second-block-element {
-  display: inline;
-  width: 20%;
-  margin-left: -100px;
-}
-.second-block-element-concentration {
-  display: inline;
-  width: 20%;
-  margin-left: -100px;
-}
-.third-block-element {
-  display: inline;
-  width: 20%;
-  margin-left: -70px;
-}
-.third-block-element-concentration {
-  display: inline;
-  width: 20%;
-  margin-left: -100px;
+
+@media print {
+  html, body {
+      width: 210mm;
+      height: 297mm;
+  }
+  .main-page {
+      margin: 0;
+      border: initial;
+      border-radius: initial;
+      width: initial;
+      min-height: initial;
+      box-shadow: initial;
+      background: initial;
+      page-break-after: always;
+  }
+ .App-Header{
+   display: none;
+ }
 }
 .font-settings {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;

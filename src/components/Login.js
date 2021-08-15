@@ -59,7 +59,9 @@ function Login() {
   };
   return (
     <div className="App">
-      <Header user={email} />
+      <span className="App-Header">
+        <Header user={email} />
+      </span>
       {email ? (
         <>
           <App />

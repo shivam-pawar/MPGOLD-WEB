@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
@@ -19,6 +19,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import moment from "moment";
 import RecordDetails from "./RecordDetails";
 import PrintPreview from "./PrintPreview";
+import ReactToPrint from "react-to-print";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -75,6 +76,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function GoldForm() {
+  const componentRef = useRef();
+
   const classes = useStyles();
   const [customerValues, setCustomerValues] = React.useState({
     customerName: "",
@@ -192,18 +195,20 @@ function GoldForm() {
   ]);
   return (
     <React.Fragment>
-      <Paper className={classes.paper}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="simple tabs example"
-          centered
-        >
-          <Tab label="REPORT" {...a11yProps(0)} />
-          <Tab label="PRINT PREVIEW" {...a11yProps(1)} />
-          <Tab label="RECORDS" {...a11yProps(2)} />
-        </Tabs>
-      </Paper>
+      <span className="App-Header">
+        <Paper className={classes.paper}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="simple tabs example"
+            centered
+          >
+            <Tab label="REPORT" {...a11yProps(0)} />
+            <Tab label="PRINT PREVIEW" {...a11yProps(1)} />
+            <Tab label="RECORDS" {...a11yProps(2)} />
+          </Tabs>
+        </Paper>
+      </span>
       <CssBaseline />
       <TabPanel value={value} index={0}>
         <Container maxWidth="lg">

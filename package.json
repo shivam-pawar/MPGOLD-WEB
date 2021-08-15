@@ -1,6 +1,6 @@
 {
   "name": "mpgold-web",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.3",
@@ -11,7 +11,6 @@
     "@testing-library/user-event": "^12.8.3",
     "firebase": "^8.4.1",
     "moment": "^2.29.1",
-    "print-js": "^1.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
