@@ -19,7 +19,6 @@ import FormLabel from "@material-ui/core/FormLabel";
 import moment from "moment";
 import RecordDetails from "./RecordDetails";
 import PrintPreview from "./PrintPreview";
-import ReactToPrint from "react-to-print";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
