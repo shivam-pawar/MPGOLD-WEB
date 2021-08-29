@@ -188,3 +188,10 @@ hr.separator {
   width: 100%;
   display: block;
 }
+.printnsave{
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
