@@ -21,7 +21,7 @@
 }
 
 .copy-form {
-  padding-top: 300px;
+  padding-top: 250px;
 }
 
 .sub-page {
@@ -70,10 +70,12 @@
 
 .gold-karat-weight {
   width: 80%;
+  font-size: larger;
+  font-weight: bold;
   display: flex;
   margin: auto;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 .gold {
@@ -87,7 +89,7 @@
 }
 
 .weight {
-  width: 35%;
+  width: 40%;
   display: inline-block;
 }
 
@@ -95,7 +97,7 @@
   width: 80%;
   display: flex;
   margin: auto;
-  padding-top: 10px;
+  padding-top: 15px;
   padding-bottom: 10px;
   margin-top: -15px;
 }
@@ -111,7 +113,7 @@
 }
 
 .third-block {
-  width: 27%;
+  width: 30%;
   display: inline-block;
 }
 
@@ -133,14 +135,15 @@
 
 .vl {
   border-left: 1px solid black;
-  height: 150px;
+  height: 155px;
   padding-left: 5px;
   padding-right: 5px;
-  margin-top: -5px
+  margin-top: -9px
 }
 
 hr.separator {
   border-top: 1px solid black;
+  width: 95%;
 }
 
 @page {
