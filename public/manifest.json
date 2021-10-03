@@ -1,20 +1,48 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
+  "name": "M. P. Gold Tunch",
+  "short_name": "M. P. Gold",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons":[
     {
-      "src": "setup.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src":"./maskable_icon.png",
+      "sizes":"192x192",
+      "type":"image/png",
+      "purpose":"any maskable"
     },
     {
-      "src": "Monitor-icon.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "src":"./logo192.png",
+      "sizes":"192x192",
+      "type":"image/png"
+    },
+    {
+      "src":"./logo256.png",
+      "sizes":"256x256",
+      "type":"image/png"
+    },
+    {
+      "src":"./logo360.png",
+      "sizes":"360x360",
+      "type":"image/png"
+    },
+    {
+      "src":"./logo384.png",
+      "sizes":"384x384",
+      "type":"image/png"
+    },
+    {
+      "src":"./logo512.png",
+      "sizes":"512x512",
+      "type":"image/png"
+    },
+    {
+      "src":"./logo537.png",
+      "sizes":"537x537",
+      "type":"image/png"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  ]
 }
