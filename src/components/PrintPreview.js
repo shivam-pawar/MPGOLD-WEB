@@ -40,7 +40,7 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
             endIcon={<LocalPrintshopIcon />}
             onClick={() => {
               window.print();
-              //handlePostRequest();
+              handlePostRequest();
             }}
           >
             Save And Print
