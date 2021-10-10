@@ -21,7 +21,7 @@
 }
 
 .copy-form {
-  padding-top: 250px;
+  padding-top: 235px;
 }
 
 .sub-page {
@@ -34,6 +34,7 @@
   width: 80%;
   display: flex;
   margin: auto;
+  margin-left: 30px;
 }
 
 .customer-name {
@@ -43,6 +44,7 @@
 
 .customer-time {
   width: 30%;
+  margin-left: 15px;
   display: inline-block;
 }
 
@@ -55,6 +57,7 @@
   width: 80%;
   display: flex;
   margin: auto;
+  margin-left: 30px;
   padding-top: 10px;
 }
 
@@ -65,6 +68,7 @@
 
 .customer-sample {
   width: 40%;
+  margin-left: 15px;
   display: inline-block;
 }
 
@@ -74,6 +78,7 @@
   font-weight: bold;
   display: flex;
   margin: auto;
+  margin-left: 30px;
   padding-top: 8px;
   padding-bottom: 8px;
 }
@@ -94,27 +99,30 @@
 }
 
 .concentration-block {
-  width: 80%;
+  width: 100%;
   display: flex;
   margin: auto;
+  margin-left: 30px;
   padding-top: 15px;
   padding-bottom: 10px;
   margin-top: -15px;
 }
 
 .first-block {
-  width: 30%;
+  width: 25%;
   display: inline-block;
 }
 
 .second-block {
-  width: 30%;
+  width: 25%;
   display: inline-block;
+  margin-left: 50px;
 }
 
 .third-block {
-  width: 30%;
+  width: 23%;
   display: inline-block;
+  margin-left: 40px;
 }
 
 .element-block {
@@ -142,8 +150,8 @@
 }
 
 hr.separator {
-  border-top: 1px solid black;
   width: 95%;
+  visibility: hidden;
 }
 
 @page {
@@ -153,45 +161,51 @@ hr.separator {
 
 @media print {
   html, body {
-      width: 210mm;
-      height: 297mm;
+    width: 210mm;
+    height: 297mm;
   }
   .main-page {
-      margin: 0;
-      border: initial;
-      border-radius: initial;
-      width: initial;
-      min-height: initial;
-      box-shadow: initial;
-      background: initial;
-      page-break-after: always;
+    margin: 0;
+    border: initial;
+    border-radius: initial;
+    width: initial;
+    min-height: initial;
+    box-shadow: initial;
+    background: initial;
+    page-break-after: always;
   }
- .App-Header{
-   display: none;
- }
+  .App-Header {
+    display: none;
+  }
 }
+
 .font-settings {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   letter-spacing: 1px;
   font-weight: 200;
 }
+
 .login-container {
   background-color: lemonchiffon;
   border: 1px solid black;
 }
+
 .login-main {
   width: 100%;
   display: flex;
 }
+
 .login-main-img {
   width: 50%;
   display: flex;
 }
+
 .login-inputs {
   width: 100%;
   display: block;
 }
-.printnsave{
+
+.printnsave {
   width: 100%;
   align-items: center;
   display: flex;

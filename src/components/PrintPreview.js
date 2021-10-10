@@ -89,16 +89,14 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
             <div className="first-block">
               <div className="element-block">
                 <div className="elements">Copper</div>
-                <div className="percentage">
-                  : &nbsp; {concentrations.copper}
-                </div>
+                <div className="percentage">&nbsp; {concentrations.copper}</div>
               </div>
               <div className="element-block">
                 {isGold === "gold" ? (
                   <>
                     <div className="elements">Silver</div>
                     <div className="percentage">
-                      : &nbsp; {concentrations.silver}
+                      &nbsp; {concentrations.silver}
                     </div>
                   </>
                 ) : (
@@ -113,94 +111,89 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
               <div className="element-block">
                 <div className="elements">Zinc</div>
 
-                <div className="percentage">: &nbsp; {concentrations.zinc}</div>
+                <div className="percentage"> &nbsp; {concentrations.zinc}</div>
               </div>
               <div className="element-block">
                 <div className="elements">Cadmium</div>
                 <div className="percentage">
-                  : &nbsp; {concentrations.cadmium}
+                  &nbsp; {concentrations.cadmium}
                 </div>
               </div>
               <div className="element-block">
                 <div className="elements">Lead</div>
-                <div className="percentage">: &nbsp; {concentrations.lead}</div>
+                <div className="percentage"> &nbsp; {concentrations.lead}</div>
               </div>
               <div className="element-block">
                 <div className="elements">Nickel</div>
-                <div className="percentage">
-                  : &nbsp; {concentrations.nickel}
-                </div>
+                <div className="percentage">&nbsp; {concentrations.nickel}</div>
               </div>
             </div>
-            <div className="vl"></div>
             <div className="second-block">
               <div className="element-block">
                 <div className="elements">Iridium</div>
                 <div className="percentage">
-                  : &nbsp; {concentrations.iridium}
+                  &nbsp; {concentrations.iridium}
                 </div>
               </div>
               <div className="element-block">
                 <div className="elements">Ruthenium</div>
                 <div className="percentage">
-                  : &nbsp; {concentrations.ruthenium}
+                  &nbsp; {concentrations.ruthenium}
                 </div>
               </div>
               <div className="element-block">
                 <div className="elements">Osmium</div>
-                <div className="percentage">
-                  : &nbsp; {concentrations.osmium}
-                </div>
+                <div className="percentage">&nbsp; {concentrations.osmium}</div>
               </div>
               <div className="element-block">
                 <div className="elements">Tin</div>
-                <div className="percentage">: &nbsp; {concentrations.tin}</div>
+                <div className="percentage"> &nbsp; {concentrations.tin}</div>
               </div>
               <div className="element-block">
                 <div className="elements">Rhodium</div>
                 <div className="percentage">
-                  : &nbsp; {concentrations.rhodium}
+                  &nbsp; {concentrations.rhodium}
                 </div>
               </div>
               <div className="element-block">
                 <div className="elements">Iron</div>
-                <div className="percentage">: &nbsp; {concentrations.iron}</div>
+                <div className="percentage"> &nbsp; {concentrations.iron}</div>
               </div>
             </div>
-            <div className="vl"></div>
             <div className="third-block">
               <div className="element-block">
                 <div className="elements">Palladium</div>
-                <div className="percentage">: &nbsp; 0.00</div>
+                <div className="percentage">
+                  {" "}
+                  &nbsp; {concentrations.palladium}
+                </div>
               </div>
               <div className="element-block">
                 <div className="elements">Cobalt</div>
-                <div className="percentage">
-                  : &nbsp; {concentrations.cobalt}
-                </div>
+                <div className="percentage">&nbsp; {concentrations.cobalt}</div>
               </div>
               <div className="element-block">
                 <div className="elements">Rhenium</div>
                 <div className="percentage">
-                  : &nbsp; {concentrations.rhenium}
+                  &nbsp; {concentrations.rhenium}
                 </div>
               </div>
               <div className="element-block">
                 <div className="elements">Tungsten</div>
                 <div className="percentage">
-                  : &nbsp; {concentrations.tungsten}
+                  &nbsp; {concentrations.tungsten}
                 </div>
               </div>
               <div className="element-block">
                 <div className="elements">Manganese</div>
                 <div className="percentage">
-                  : &nbsp; {concentrations.manganese}
+                  &nbsp; {concentrations.manganese}
                 </div>
               </div>
               <div className="element-block">
                 <div className="elements">Bismuth</div>
                 <div className="percentage">
-                  : &nbsp; {concentrations.bismuth}
+                  &nbsp; {concentrations.bismuth}
                 </div>
               </div>
             </div>
@@ -247,7 +240,7 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
                 <div className="element-block">
                   <div className="elements">Copper</div>
                   <div className="percentage">
-                    : &nbsp; {concentrations.copper}
+                    &nbsp; {concentrations.copper}
                   </div>
                 </div>
                 <div className="element-block">
@@ -255,14 +248,14 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
                     <>
                       <div className="elements">Silver</div>
                       <div className="percentage">
-                        : &nbsp; {concentrations.silver}
+                        &nbsp; {concentrations.silver}
                       </div>
                     </>
                   ) : (
                     <>
                       <div className="elements">Gold</div>
                       <div className="percentage">
-                        : &nbsp; {concentrations.gold}
+                        &nbsp; {concentrations.gold}
                       </div>
                     </>
                   )}
@@ -270,102 +263,95 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
                 <div className="element-block">
                   <div className="elements">Zinc</div>
 
-                  <div className="percentage">
-                    : &nbsp; {concentrations.zinc}
-                  </div>
+                  <div className="percentage">&nbsp; {concentrations.zinc}</div>
                 </div>
                 <div className="element-block">
                   <div className="elements">Cadmium</div>
                   <div className="percentage">
-                    : &nbsp; {concentrations.cadmium}
+                    &nbsp; {concentrations.cadmium}
                   </div>
                 </div>
                 <div className="element-block">
                   <div className="elements">Lead</div>
-                  <div className="percentage">
-                    : &nbsp; {concentrations.lead}
-                  </div>
+                  <div className="percentage">&nbsp; {concentrations.lead}</div>
                 </div>
                 <div className="element-block">
                   <div className="elements">Nickel</div>
                   <div className="percentage">
-                    : &nbsp; {concentrations.nickel}
+                    &nbsp; {concentrations.nickel}
                   </div>
                 </div>
               </div>
-              <div className="vl"></div>
               <div className="second-block">
                 <div className="element-block">
                   <div className="elements">Iridium</div>
                   <div className="percentage">
-                    : &nbsp; {concentrations.iridium}
+                    &nbsp; {concentrations.iridium}
                   </div>
                 </div>
                 <div className="element-block">
                   <div className="elements">Ruthenium</div>
                   <div className="percentage">
-                    : &nbsp; {concentrations.ruthenium}
+                    &nbsp; {concentrations.ruthenium}
                   </div>
                 </div>
                 <div className="element-block">
                   <div className="elements">Osmium</div>
                   <div className="percentage">
-                    : &nbsp; {concentrations.osmium}
+                    &nbsp; {concentrations.osmium}
                   </div>
                 </div>
                 <div className="element-block">
                   <div className="elements">Tin</div>
-                  <div className="percentage">
-                    : &nbsp; {concentrations.tin}
-                  </div>
+                  <div className="percentage">&nbsp; {concentrations.tin}</div>
                 </div>
                 <div className="element-block">
                   <div className="elements">Rhodium</div>
                   <div className="percentage">
-                    : &nbsp; {concentrations.rhodium}
+                    &nbsp; {concentrations.rhodium}
                   </div>
                 </div>
                 <div className="element-block">
                   <div className="elements">Iron</div>
-                  <div className="percentage">
-                    : &nbsp; {concentrations.iron}
-                  </div>
+                  <div className="percentage">&nbsp; {concentrations.iron}</div>
                 </div>
               </div>
-              <div className="vl"></div>
               <div className="third-block">
                 <div className="element-block">
                   <div className="elements">Palladium</div>
-                  <div className="percentage">: &nbsp; 0.00</div>
+                  <div className="percentage">
+                    {" "}
+                    &nbsp; {concentrations.palladium}
+                  </div>
                 </div>
                 <div className="element-block">
                   <div className="elements">Cobalt</div>
                   <div className="percentage">
-                    : &nbsp; {concentrations.cobalt}
+                    &nbsp; {concentrations.cobalt}
                   </div>
                 </div>
                 <div className="element-block">
                   <div className="elements">Rhenium</div>
                   <div className="percentage">
-                    : &nbsp; {concentrations.rhenium}
+                    &nbsp; {concentrations.rhenium}
                   </div>
                 </div>
                 <div className="element-block">
                   <div className="elements">Tungsten</div>
                   <div className="percentage">
-                    : &nbsp; {concentrations.tungsten}
+                    &nbsp; {concentrations.tungsten}
                   </div>
                 </div>
                 <div className="element-block">
                   <div className="elements">Manganese</div>
                   <div className="percentage">
-                    : &nbsp; {concentrations.manganese}
+                    &nbsp; {concentrations.manganese}
                   </div>
                 </div>
                 <div className="element-block">
                   <div className="elements">Bismuth</div>
                   <div className="percentage">
-                    : &nbsp; {concentrations.bismuth}
+                    &nbsp; {concentrations.bismuth}
                   </div>
                 </div>
               </div>
