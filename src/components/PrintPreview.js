@@ -80,9 +80,15 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
             ) : (
               ""
             )}
-            <div className="weight">
-              WEIGHT : {customerValues.weight + " gram"}
-            </div>
+            {isGold === "gold" ? (
+              <div className="weight">
+                WEIGHT : {customerValues.weight + " gram"}
+              </div>
+            ) : (
+              <div className="silver-weight">
+                WEIGHT : {customerValues.weight + " gram"}
+              </div>
+            )}
           </div>
           <hr className="separator" />
           <div className="concentration-block">
@@ -103,7 +109,7 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
                   <>
                     <div className="elements">Gold</div>
                     <div className="percentage">
-                      : &nbsp; {concentrations.gold}
+                      &nbsp; {concentrations.gold}
                     </div>
                   </>
                 )}
@@ -230,9 +236,15 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
               ) : (
                 ""
               )}
-              <div className="weight">
-                WEIGHT : {customerValues.weight + " gram"}
-              </div>
+              {isGold === "gold" ? (
+                <div className="weight">
+                  WEIGHT : {customerValues.weight + " gram"}
+                </div>
+              ) : (
+                <div className="silver-weight">
+                  WEIGHT : {customerValues.weight + " gram"}
+                </div>
+              )}
             </div>
             <hr className="separator" />
             <div className="concentration-block">
