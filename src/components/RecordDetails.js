@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Container, TextField } from "@material-ui/core";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import TablePagination from "@material-ui/core/TablePagination";
-import Paper from "@material-ui/core/Paper";
+import { makeStyles } from "@material-ui/core/styles";
 import firebaseDB from "../config/firebase";
 import moment from "moment";
+import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
+import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,30 +22,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const StyledTableCell = withStyles((theme) => ({
-  head: {
-    backgroundColor: "#f50057",
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 16,
-  },
-}))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow);
-
 function RecordDetails() {
   const classes = useStyles();
   const [data, setData] = useState([]);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [page, setPage] = React.useState(0);
-
   useEffect(() => {
     const recordRef = firebaseDB.ref("mpgold-web-default-rtdb");
     recordRef
@@ -61,7 +34,10 @@ function RecordDetails() {
         const records = snapshot.val();
         const recordList = [];
         for (let id in records) {
-          recordList.push(records[id]);
+          recordList.push({
+            ...records[id],
+            id: id,
+          });
         }
         setData(recordList);
       });
@@ -78,7 +54,10 @@ function RecordDetails() {
         const records = snapshot.val();
         const recordList = [];
         for (let id in records) {
-          recordList.push(records[id]);
+          recordList.push({
+            ...records[id],
+            id: id,
+          });
         }
         setData(recordList);
       });
@@ -95,7 +74,10 @@ function RecordDetails() {
         const records = snapshot.val();
         const recordList = [];
         for (let id in records) {
-          recordList.push(records[id]);
+          recordList.push({
+            ...records[id],
+            id: id,
+          });
         }
         setData(recordList);
       });
@@ -112,20 +94,80 @@ function RecordDetails() {
         const records = snapshot.val();
         const recordList = [];
         for (let id in records) {
-          recordList.push(records[id]);
+          recordList.push({
+            ...records[id],
+            id: id,
+          });
         }
         setData(recordList);
       });
   };
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
+  const deleteUser = React.useCallback(
+    (id) => () => {
+      if (window.confirm("Are you sure?"))
+        firebaseDB.ref("mpgold-web-default-rtdb").child(id).remove();
+    },
+    []
+  );
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
+  const columns = [
+    {
+      field: "serial_number",
+      type: "number",
+      headerName: "SR Number",
+      width: 100,
+    },
+    {
+      field: "report_date",
+      headerName: "Date",
+      width: 130,
+      type: "date",
+      valueFormatter: (params) => {
+        const valueFormatted = moment(params.value).format("DD-MM-YYYY");
+        return `${valueFormatted}`;
+      },
+    },
+    {
+      field: "customer_name",
+      headerName: "Customer Name",
+      width: 200,
+    },
+    {
+      field: "sample_type",
+      headerName: "Sample Type",
+      width: 170,
+    },
+    { field: "weight", headerName: "Weight", width: 140 },
+    {
+      field: "gold_purity",
+      headerName: "Gold Purity",
+      width: 140,
+    },
+    {
+      field: "silver_purity",
+      headerName: "Silver Purity",
+      width: 140,
+    },
+    {
+      field: "actions",
+      type: "actions",
+      headerName: "Actions",
+      width: 100,
+      cellClassName: classes.actions,
+      getActions: ({ id }) => {
+        return [
+          <GridActionsCellItem
+            icon={<DeleteIcon />}
+            label="Delete"
+            onClick={deleteUser(id)}
+            color="inherit"
+          />,
+        ];
+      },
+    },
+  ];
+
   return (
     <Container maxWidth="lg" className={classes.root}>
       <TextField
@@ -153,62 +195,16 @@ function RecordDetails() {
         }}
         name="dateTime"
         onChange={handleDateFilter}
+        defaultValue={moment(Date().toLocaleString()).format("YYYY-MM-DD")}
       />
-      <TableContainer component={Paper}>
-        <Table
-          stickyHeader
-          className={classes.table}
-          aria-label="customized table"
-        >
-          <TableHead>
-            <TableRow>
-              <StyledTableCell align="left">SR Number</StyledTableCell>
-              <StyledTableCell align="left">Date</StyledTableCell>
-              <StyledTableCell align="left">Customer Name</StyledTableCell>
-              <StyledTableCell align="left">Sample Type</StyledTableCell>
-              <StyledTableCell align="left">Weight</StyledTableCell>
-              <StyledTableCell align="left">Gold Purity</StyledTableCell>
-              <StyledTableCell align="left">Silver Purity</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
-                <StyledTableRow key={row.serial_number}>
-                  <StyledTableCell component="th" scope="row">
-                    {row.serial_number}
-                  </StyledTableCell>
-                  <StyledTableCell component="th" scope="row">
-                    {moment(row.report_date).format("DD-MM-YYYY")}
-                  </StyledTableCell>
-                  <StyledTableCell align="left">
-                    {row.customer_name}
-                  </StyledTableCell>
-                  <StyledTableCell align="left">
-                    {row.sample_type}
-                  </StyledTableCell>
-                  <StyledTableCell align="left">{row.weight}</StyledTableCell>
-                  <StyledTableCell align="left">
-                    {row.gold_purity}
-                  </StyledTableCell>
-                  <StyledTableCell align="left">
-                    {row.silver_purity}
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={data.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
+      <div style={{ height: 800, width: "95%" }}>
+        <DataGrid
+          rows={data}
+          columns={columns}
+          pageSize={50}
+          rowsPerPageOptions={[5]}
+        />
+      </div>
     </Container>
   );
 }
