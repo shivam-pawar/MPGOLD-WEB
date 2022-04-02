@@ -8,11 +8,13 @@ import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 function PrintPreview({ customerValues, concentrations, isGold }) {
   const handlePostRequest = () => {
     const records = firebaseDB.ref("mpgold-web-default-rtdb");
+    const customerName = handleCapitalization(customerValues.customerName);
+    const sampleType = handleCapitalization(customerValues.sampleType);
     const dataToPush = {
       serial_number: customerValues.srNumber,
       report_date: customerValues.dateTime,
-      customer_name: customerValues.customerName,
-      sample_type: customerValues.sampleType,
+      customer_name: customerName,
+      sample_type: sampleType,
       weight: customerValues.weight,
       gold_purity: concentrations.gold,
       silver_purity: concentrations.silver,
@@ -26,6 +28,21 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
       }
     } catch (error) {
       alert(error.message);
+    }
+  };
+  const handleCapitalization = (input) => {
+    if (input !== null && input !== "") {
+      const loweredCase = input.toLowerCase();
+      var words = loweredCase.split(" ");
+      var CapitalizedWords = [];
+      words.forEach((element) => {
+        CapitalizedWords.push(
+          element[0].toUpperCase() + element.slice(1, element.length)
+        );
+      });
+      return CapitalizedWords.join(" ");
+    } else {
+      return null;
     }
   };
   return (
@@ -51,7 +68,7 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
         <div className="sub-page">
           <div className="customer-details">
             <div className="customer-name">
-              Name: {customerValues.customerName}
+              Name: {handleCapitalization(customerValues.customerName)}
             </div>
             <div className="customer-time">
               Time: {moment(Date().toLocaleString()).format("hh:mm:ss a")}
@@ -65,7 +82,7 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
               Date: {moment(Date().toLocaleString()).format("Do MMMM YYYY")}
             </div>
             <div className="customer-sample">
-              Sample: {customerValues.sampleType}
+              Sample: {handleCapitalization(customerValues.sampleType)}
             </div>
           </div>
           <hr className="separator" />
@@ -207,7 +224,7 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
           <div className="copy-form">
             <div className="customer-details">
               <div className="customer-name">
-                Name: {customerValues.customerName}
+                Name: {handleCapitalization(customerValues.customerName)}
               </div>
               <div className="customer-time">
                 Time: {moment(Date().toLocaleString()).format("hh:mm:ss a")}
@@ -221,7 +238,7 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
                 Date: {moment(Date().toLocaleString()).format("Do MMMM YYYY")}
               </div>
               <div className="customer-sample">
-                Sample: {customerValues.sampleType}
+                Sample: {handleCapitalization(customerValues.sampleType)}
               </div>
             </div>
             <hr className="separator" />
