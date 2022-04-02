@@ -26,7 +26,7 @@ function RecordDetails() {
   const classes = useStyles();
   const [data, setData] = useState([]);
   useEffect(() => {
-    const recordRef = firebaseDB.ref("mpgold-web-default-rtdb");
+    const recordRef = firebaseDB.ref(process.env.REACT_APP_DATABASE_REF);
     recordRef
       .orderByChild("report_date")
       .startAt(moment(Date().toLocaleString()).format("YYYY-MM-DD"))
@@ -45,7 +45,7 @@ function RecordDetails() {
 
   const handleCustomerNameFilter = (e) => {
     const value = e.target.value;
-    const recordRef = firebaseDB.ref("mpgold-web-default-rtdb");
+    const recordRef = firebaseDB.ref(process.env.REACT_APP_DATABASE_REF);
     recordRef
       .orderByChild("customer_name")
       .startAt(value)
@@ -65,7 +65,7 @@ function RecordDetails() {
 
   const handleSRNumberFilter = (e) => {
     const value = e.target.value;
-    const recordRef = firebaseDB.ref("mpgold-web-default-rtdb");
+    const recordRef = firebaseDB.ref(process.env.REACT_APP_DATABASE_REF);
     recordRef
       .orderByChild("serial_number")
       .startAt(value)
@@ -85,7 +85,7 @@ function RecordDetails() {
 
   const handleDateFilter = (e) => {
     const value = e.target.value;
-    const recordRef = firebaseDB.ref("mpgold-web-default-rtdb");
+    const recordRef = firebaseDB.ref(process.env.REACT_APP_DATABASE_REF);
     recordRef
       .orderByChild("report_date")
       .startAt(moment(value).format("YYYY-MM-DD"))
@@ -106,7 +106,7 @@ function RecordDetails() {
   const deleteUser = React.useCallback(
     (id) => () => {
       if (window.confirm("Are you sure?"))
-        firebaseDB.ref("mpgold-web-default-rtdb").child(id).remove();
+        firebaseDB.ref(process.env.REACT_APP_DATABASE_REF).child(id).remove();
     },
     []
   );
