@@ -7,7 +7,7 @@ import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 
 function PrintPreview({ customerValues, concentrations, isGold }) {
   const handlePostRequest = () => {
-    const records = firebaseDB.ref(process.env.DATABASE_REF);
+    const records = firebaseDB.ref(process.env.REACT_APP_DATABASE_REF);
     const customerName = handleCapitalization(customerValues.customerName);
     const sampleType = handleCapitalization(customerValues.sampleType);
     const dataToPush = {
