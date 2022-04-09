@@ -32,7 +32,7 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
   };
   const handleCapitalization = (input) => {
     if (input !== null && input !== "") {
-      const loweredCase = input.toLowerCase();
+      const loweredCase = input.toLowerCase().trim();
       var words = loweredCase.split(" ");
       var CapitalizedWords = [];
       words.forEach((element) => {
