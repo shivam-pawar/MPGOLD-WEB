@@ -15,6 +15,7 @@ function Header({ user }) {
     <div class="header">
       <a href={url} class="logo">
         M. P. GOLD & SILVER TESTING
+        {process.env.NODE_ENV === "development" && <span> (development)</span>}
       </a>
       <div class="header-right">
         <Button color="inherit" onClick={signOutUser}>
