@@ -30,9 +30,10 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
       alert(error.message);
     }
   };
-  const handleCapitalization = (input) => {
+  const handleCapitalization = (inputText) => {
+    let input = inputText.trim();
     if (input !== null && input !== "") {
-      const loweredCase = input.toLowerCase().trim();
+      const loweredCase = input.toLowerCase();
       var words = loweredCase.split(" ");
       var CapitalizedWords = [];
       words.forEach((element) => {
