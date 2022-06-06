@@ -3,9 +3,11 @@ import { Container, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import firebaseDB from "../config/firebase";
 import moment from "moment";
-import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/DeleteOutlined";
-
+import EditIcon from "@mui/icons-material/Edit";
+import MUIDataTable from "mui-datatables";
+import IconButton from "@mui/material/IconButton";
+import EditRecord from "./EditRecord";
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -25,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 function RecordDetails() {
   const classes = useStyles();
   const [data, setData] = useState([]);
+  const [isEditMode, setEditMode] = useState(false);
   useEffect(() => {
     const recordRef = firebaseDB.ref(process.env.REACT_APP_DATABASE_REF);
     recordRef
@@ -42,7 +45,9 @@ function RecordDetails() {
         setData(recordList);
       });
   }, []);
-
+  const handleEditMode = (data) => {
+    setEditMode(data);
+  };
   const handleCustomerNameFilter = (e) => {
     const value = e.target.value;
     const recordRef = firebaseDB.ref(process.env.REACT_APP_DATABASE_REF);
@@ -103,109 +108,144 @@ function RecordDetails() {
       });
   };
 
-  const deleteUser = React.useCallback(
-    (id) => () => {
-      if (window.confirm("Are you sure?"))
-        firebaseDB.ref(process.env.REACT_APP_DATABASE_REF).child(id).remove();
-    },
-    []
-  );
+  const deleteUser = (id) => {
+    if (window.confirm("Are you sure?"))
+      firebaseDB.ref(process.env.REACT_APP_DATABASE_REF).child(id).remove();
+  };
 
   const columns = [
     {
-      field: "serial_number",
-      type: "number",
-      headerName: "SR Number",
-      width: 100,
-    },
-    {
-      field: "report_date",
-      headerName: "Date",
-      width: 130,
-      type: "date",
-      valueFormatter: (params) => {
-        const valueFormatted = moment(params.value).format("DD-MM-YYYY");
-        return `${valueFormatted}`;
+      name: "id",
+      label: "Id",
+      options: {
+        display: false,
       },
     },
     {
-      field: "customer_name",
-      headerName: "Customer Name",
+      name: "serial_number",
+      type: "number",
+      label: "SR Number",
+      width: 100,
+    },
+    {
+      name: "report_date",
+      label: "Date",
+      width: 130,
+      type: "date",
+      options: {
+        filter: true,
+        sort: true,
+        customBodyRender: (value) =>
+          moment(new Date(value)).format("DD/MM/YY hh:mm:ss A"),
+      },
+    },
+    {
+      name: "customer_name",
+      label: "Customer Name",
       width: 200,
     },
     {
-      field: "sample_type",
-      headerName: "Sample Type",
+      name: "sample_type",
+      label: "Sample Type",
       width: 170,
     },
-    { field: "weight", headerName: "Weight", width: 140 },
+    { name: "weight", label: "Weight", width: 140 },
     {
-      field: "gold_purity",
-      headerName: "Gold Purity",
+      name: "gold_purity",
+      label: "Gold Purity",
       width: 140,
     },
     {
-      field: "silver_purity",
-      headerName: "Silver Purity",
+      name: "silver_purity",
+      label: "Silver Purity",
       width: 140,
     },
     {
-      field: "actions",
-      type: "actions",
-      headerName: "Actions",
-      width: 100,
-      cellClassName: classes.actions,
-      getActions: ({ id }) => {
-        return [
-          <GridActionsCellItem
-            icon={<DeleteIcon />}
-            label="Delete"
-            onClick={deleteUser(id)}
-            color="inherit"
-          />,
-        ];
+      name: "Edit",
+      options: {
+        filter: true,
+        sort: false,
+        empty: true,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return (
+            <IconButton
+              aria-label="delete"
+              size="small"
+              onClick={() => {
+                handleEditMode(tableMeta);
+              }}
+              color="primary"
+            >
+              <EditIcon fontSize="small" />
+            </IconButton>
+          );
+        },
+      },
+    },
+    {
+      name: "Delete",
+      options: {
+        filter: true,
+        sort: false,
+        empty: true,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return (
+            <IconButton
+              aria-label="delete"
+              size="small"
+              onClick={() => deleteUser(tableMeta.rowData[0])}
+              color="error"
+            >
+              <DeleteIcon fontSize="small" />
+            </IconButton>
+          );
+        },
       },
     },
   ];
+  const options = {
+    filterType: "checkbox",
+    responsive: "standard",
+    selectableRows: false,
+    filter: false,
+    print: false,
+  };
 
-  return (
-    <Container maxWidth="lg" className={classes.root}>
-      <TextField
-        className="c-name"
-        id="standard-customerName"
-        label="Search Customer"
-        name="customerName"
-        onChange={handleCustomerNameFilter}
-      />
-      <TextField
-        className="c-sr"
-        type="number"
-        id="standard-customerName"
-        label="Search SR No."
-        name="customerName"
-        onChange={handleSRNumberFilter}
-      />
-      <TextField
-        id="datetime-local"
-        label="Date and Time"
-        type="date"
-        className={classes.textField}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        name="dateTime"
-        onChange={handleDateFilter}
-        defaultValue={moment(Date().toLocaleString()).format("YYYY-MM-DD")}
-      />
-      <div style={{ height: 800, width: "95%" }}>
-        <DataGrid
-          rows={data}
-          columns={columns}
-          pageSize={50}
-          rowsPerPageOptions={[5]}
+  return isEditMode ? (
+    <EditRecord data={isEditMode} />
+  ) : (
+    <>
+      <Container className={classes.root}>
+        <TextField
+          className="c-name"
+          id="standard-customerName"
+          label="Search Customer"
+          name="customer_name"
+          onChange={handleCustomerNameFilter}
         />
-      </div>
-    </Container>
+        <TextField
+          className="c-srnumber"
+          type="number"
+          id="standard-customerName"
+          label="Search SR No."
+          name="serial_number"
+          onChange={handleSRNumberFilter}
+        />
+        <TextField
+          id="datetime-local"
+          label="Date and Time"
+          type="date"
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          name="report_date"
+          onChange={handleDateFilter}
+          defaultValue={moment(Date().toLocaleString()).format("YYYY-MM-DD")}
+        />
+      </Container>
+      <MUIDataTable data={data} columns={columns} options={options} />
+    </>
   );
 }
 
