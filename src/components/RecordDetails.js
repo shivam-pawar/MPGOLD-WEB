@@ -209,6 +209,8 @@ function RecordDetails() {
     selectableRows: false,
     filter: false,
     print: false,
+    rowsPerPage: 50,
+    rowsPerPageOptions: [10, 15, 20, 50, 100],
   };
 
   return isEditMode ? (
