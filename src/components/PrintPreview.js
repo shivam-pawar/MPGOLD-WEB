@@ -12,7 +12,9 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
     const sampleType = handleCapitalization(customerValues.sampleType);
     const dataToPush = {
       serial_number: customerValues.srNumber,
-      report_date: customerValues.dateTime,
+      report_date: moment(Date().toLocaleString()).format(
+        "YYYY-MM-DDTHH:mm:ss"
+      ),
       customer_name: customerName,
       sample_type: sampleType,
       weight: customerValues.weight,
