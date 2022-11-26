@@ -20,6 +20,7 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
       weight: customerValues.weight,
       gold_purity: concentrations.gold,
       silver_purity: concentrations.silver,
+      reportType: isGold === "gold" ? "gold" : "silver",
     };
     try {
       records.push(dataToPush);
