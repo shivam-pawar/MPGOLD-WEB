@@ -235,7 +235,7 @@ function RecordDetails() {
         />
         <TextField
           id="datetime-local"
-          label="Date and Time"
+          label="Date"
           type="date"
           className={classes.textField}
           InputLabelProps={{

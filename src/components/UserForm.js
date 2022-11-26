@@ -19,6 +19,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import moment from "moment";
 import RecordDetails from "./RecordDetails";
 import PrintPreview from "./PrintPreview";
+import Collection from "./Collection";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -74,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
 }));
-function GoldForm() {
+function UserForm() {
   const componentRef = useRef();
 
   const classes = useStyles();
@@ -205,6 +206,7 @@ function GoldForm() {
             <Tab label="REPORT" {...a11yProps(0)} />
             <Tab label="PRINT PREVIEW" {...a11yProps(1)} />
             <Tab label="RECORDS" {...a11yProps(2)} />
+            <Tab label="Collection" {...a11yProps(3)} />
           </Tabs>
         </Paper>
       </span>
@@ -533,8 +535,11 @@ function GoldForm() {
       <TabPanel value={value} index={2}>
         <RecordDetails />
       </TabPanel>
+      <TabPanel value={value} index={3}>
+        <Collection />
+      </TabPanel>
     </React.Fragment>
   );
 }
 
-export default GoldForm;
+export default UserForm;
