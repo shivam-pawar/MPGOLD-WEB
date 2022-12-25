@@ -53,17 +53,20 @@
 .customer-name {
   width: 40%;
   display: inline-block;
+  font-weight: 500;
 }
 
 .customer-time {
   width: 30%;
   margin-left: 15px;
   display: inline-block;
+  font-weight: 500;
 }
 
 .customer-sr {
   width: 27%;
   display: inline-block;
+  font-weight: 500;
 }
 
 .customer-date-sample {
@@ -72,6 +75,7 @@
   margin: auto;
   margin-left: 30px;
   padding-top: 10px;
+  font-weight: 500;
 }
 
 .customer-date {
@@ -145,6 +149,7 @@
 .elements {
   width: 50%;
   display: inline-block;
+  font-weight: 500;
 }
 
 .percentage {
@@ -152,6 +157,7 @@
   width: 40%;
   flex-direction: row;
   justify-content: flex-end;
+  font-weight: 500;
 }
 
 .vl {
