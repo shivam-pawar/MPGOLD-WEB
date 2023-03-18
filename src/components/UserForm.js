@@ -19,6 +19,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import moment from "moment";
 import RecordDetails from "./RecordDetails";
 import PrintPreview from "./PrintPreview";
+import Collection from "./Collection";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -74,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
 }));
-function GoldForm() {
+function UserForm() {
   const componentRef = useRef();
 
   const classes = useStyles();
@@ -83,7 +84,7 @@ function GoldForm() {
     srNumber: 0,
     sampleType: "Dhali",
     weight: (0.0).toFixed(3),
-    dateTime: moment(Date().toLocaleString()).format("YYYY-MM-DDThh:mm"),
+    dateTime: moment(Date().toLocaleString()).format("YYYY-MM-DDTHH:mm"),
     karat: "",
   });
 
@@ -147,7 +148,7 @@ function GoldForm() {
     setConcentrations({
       ...concentrations,
       copper: (
-        100.00 -
+        100.0 -
         parseFloat(
           parseFloat(concentrations.gold) +
             parseFloat(concentrations.silver) +
@@ -205,6 +206,7 @@ function GoldForm() {
             <Tab label="REPORT" {...a11yProps(0)} />
             <Tab label="PRINT PREVIEW" {...a11yProps(1)} />
             <Tab label="RECORDS" {...a11yProps(2)} />
+            <Tab label="Collection" {...a11yProps(3)} />
           </Tabs>
         </Paper>
       </span>
@@ -245,7 +247,7 @@ function GoldForm() {
               label="Weight"
               name="weight"
               defaultValue={customerValues.weight}
-              onChange={handleCustomerDetails}            
+              onChange={handleCustomerDetails}
             />
             <TextField
               id="datetime-local"
@@ -279,8 +281,8 @@ function GoldForm() {
                   name="gold"
                   defaultValue={concentrations.gold}
                   onChange={handleConcentrationsChange}
-                  inputProps={{style: {fontSize: 24}}}
-                  InputLabelProps={{style: {fontSize: 20}}}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
                 />{" "}
                 <TextField
                   id="standard-silver"
@@ -289,8 +291,8 @@ function GoldForm() {
                   name="silver"
                   defaultValue={concentrations.silver}
                   onChange={handleConcentrationsChange}
-                  inputProps={{style: {fontSize: 24}}}
-                  InputLabelProps={{style: {fontSize: 20}}}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
                 />{" "}
                 <TextField
                   id="standard-copper"
@@ -300,8 +302,8 @@ function GoldForm() {
                   value={concentrations.copper}
                   onChange={handleConcentrationsChange}
                   disabled
-                  inputProps={{style: {fontSize: 24}}}
-                  InputLabelProps={{style: {fontSize: 20}}}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
                 />{" "}
                 <TextField
                   id="standard-zinc"
@@ -310,8 +312,8 @@ function GoldForm() {
                   name="zinc"
                   defaultValue={concentrations.zinc}
                   onChange={handleConcentrationsChange}
-                  inputProps={{style: {fontSize: 24}}}
-                  InputLabelProps={{style: {fontSize: 20}}}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
                 />{" "}
                 <TextField
                   id="standard-cadmium"
@@ -320,8 +322,8 @@ function GoldForm() {
                   name="cadmium"
                   defaultValue={concentrations.cadmium}
                   onChange={handleConcentrationsChange}
-                  inputProps={{style: {fontSize: 24}}}
-                  InputLabelProps={{style: {fontSize: 20}}}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
                 />{" "}
                 <TextField
                   id="standard-iridium"
@@ -330,8 +332,8 @@ function GoldForm() {
                   name="iridium"
                   defaultValue={concentrations.iridium}
                   onChange={handleConcentrationsChange}
-                  inputProps={{style: {fontSize: 24}}}
-                  InputLabelProps={{style: {fontSize: 20}}}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
                 />{" "}
                 <TextField
                   id="standard-ruthenium"
@@ -340,8 +342,8 @@ function GoldForm() {
                   name="ruthenium"
                   defaultValue={concentrations.ruthenium}
                   onChange={handleConcentrationsChange}
-                  inputProps={{style: {fontSize: 24}}}
-                  InputLabelProps={{style: {fontSize: 20}}}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
                 />{" "}
                 <TextField
                   id="standard-osmium"
@@ -350,8 +352,8 @@ function GoldForm() {
                   name="osmium"
                   defaultValue={concentrations.osmium}
                   onChange={handleConcentrationsChange}
-                  inputProps={{style: {fontSize: 24}}}
-                  InputLabelProps={{style: {fontSize: 20}}}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
                 />{" "}
                 <TextField
                   id="standard-lead"
@@ -360,8 +362,8 @@ function GoldForm() {
                   name="lead"
                   defaultValue={concentrations.lead}
                   onChange={handleConcentrationsChange}
-                  inputProps={{style: {fontSize: 24}}}
-                  InputLabelProps={{style: {fontSize: 20}}}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
                 />{" "}
                 <TextField
                   id="standard-iron"
@@ -370,8 +372,8 @@ function GoldForm() {
                   name="iron"
                   defaultValue={concentrations.iron}
                   onChange={handleConcentrationsChange}
-                  inputProps={{style: {fontSize: 24}}}
-                  InputLabelProps={{style: {fontSize: 20}}}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
                 />{" "}
                 <TextField
                   id="standard-nickel"
@@ -380,8 +382,8 @@ function GoldForm() {
                   name="nickel"
                   defaultValue={concentrations.nickel}
                   onChange={handleConcentrationsChange}
-                  inputProps={{style: {fontSize: 24}}}
-                  InputLabelProps={{style: {fontSize: 20}}}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
                 />{" "}
                 <TextField
                   id="standard-rhodium"
@@ -390,8 +392,8 @@ function GoldForm() {
                   name="rhodium"
                   defaultValue={concentrations.rhodium}
                   onChange={handleConcentrationsChange}
-                  inputProps={{style: {fontSize: 24}}}
-                  InputLabelProps={{style: {fontSize: 20}}}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
                 />
                 <TextField
                   id="standard-manganese"
@@ -400,8 +402,8 @@ function GoldForm() {
                   name="manganese"
                   defaultValue={concentrations.manganese}
                   onChange={handleConcentrationsChange}
-                  inputProps={{style: {fontSize: 24}}}
-                  InputLabelProps={{style: {fontSize: 20}}}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
                 />{" "}
                 <TextField
                   id="standard-tin"
@@ -410,8 +412,8 @@ function GoldForm() {
                   name="tin"
                   defaultValue={concentrations.tin}
                   onChange={handleConcentrationsChange}
-                  inputProps={{style: {fontSize: 24}}}
-                  InputLabelProps={{style: {fontSize: 20}}}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
                 />{" "}
                 <TextField
                   id="standard-platinum"
@@ -420,8 +422,8 @@ function GoldForm() {
                   name="platinum"
                   defaultValue={concentrations.platinum}
                   onChange={handleConcentrationsChange}
-                  inputProps={{style: {fontSize: 24}}}
-                  InputLabelProps={{style: {fontSize: 20}}}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
                 />{" "}
                 <TextField
                   id="standard-bismuth"
@@ -430,8 +432,8 @@ function GoldForm() {
                   name="bismuth"
                   defaultValue={concentrations.bismuth}
                   onChange={handleConcentrationsChange}
-                  inputProps={{style: {fontSize: 24}}}
-                  InputLabelProps={{style: {fontSize: 20}}}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
                 />{" "}
                 <TextField
                   id="standard-palladium"
@@ -440,8 +442,8 @@ function GoldForm() {
                   name="palladium"
                   defaultValue={concentrations.palladium}
                   onChange={handleConcentrationsChange}
-                  inputProps={{style: {fontSize: 24}}}
-                  InputLabelProps={{style: {fontSize: 20}}}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
                 />{" "}
                 <TextField
                   id="standard-cobalt"
@@ -450,8 +452,8 @@ function GoldForm() {
                   name="cobalt"
                   defaultValue={concentrations.cobalt}
                   onChange={handleConcentrationsChange}
-                  inputProps={{style: {fontSize: 24}}}
-                  InputLabelProps={{style: {fontSize: 20}}}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
                 />{" "}
                 <TextField
                   id="standard-rhenium"
@@ -460,8 +462,8 @@ function GoldForm() {
                   name="rhenium"
                   defaultValue={concentrations.rhenium}
                   onChange={handleConcentrationsChange}
-                  inputProps={{style: {fontSize: 24}}}
-                  InputLabelProps={{style: {fontSize: 20}}}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
                 />{" "}
                 <TextField
                   id="standard-tungsten"
@@ -470,8 +472,8 @@ function GoldForm() {
                   name="tungsten"
                   defaultValue={concentrations.tungsten}
                   onChange={handleConcentrationsChange}
-                  inputProps={{style: {fontSize: 24}}}
-                  InputLabelProps={{style: {fontSize: 20}}}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
                 />
               </form>
             </Grid>
@@ -533,8 +535,11 @@ function GoldForm() {
       <TabPanel value={value} index={2}>
         <RecordDetails />
       </TabPanel>
+      <TabPanel value={value} index={3}>
+        <Collection />
+      </TabPanel>
     </React.Fragment>
   );
 }
 
-export default GoldForm;
+export default UserForm;
