@@ -104,7 +104,7 @@ function UserForm() {
     lead: "0.00",
     platinum: "0.00",
     iron: "0.00",
-    bismuth: "0.00",
+    indium: "0.00",
     palladium: "0.00",
     cobalt: "0.00",
     rhenium: "0.00",
@@ -164,7 +164,7 @@ function UserForm() {
             parseFloat(concentrations.lead) +
             parseFloat(concentrations.platinum) +
             parseFloat(concentrations.iron) +
-            parseFloat(concentrations.bismuth) +
+            parseFloat(concentrations.indium) +
             parseFloat(concentrations.palladium) +
             parseFloat(concentrations.cobalt) +
             parseFloat(concentrations.rhenium) +
@@ -187,7 +187,7 @@ function UserForm() {
     concentrations.lead,
     concentrations.platinum,
     concentrations.iron,
-    concentrations.bismuth,
+    concentrations.indium,
     concentrations.palladium,
     concentrations.cobalt,
     concentrations.rhenium,
@@ -426,11 +426,11 @@ function UserForm() {
                   InputLabelProps={{ style: { fontSize: 20 } }}
                 />{" "}
                 <TextField
-                  id="standard-bismuth"
+                  id="standard-indium"
                   variant="outlined"
-                  label="Bismuth"
-                  name="bismuth"
-                  defaultValue={concentrations.bismuth}
+                  label="Indium"
+                  name="Indium"
+                  defaultValue={concentrations.indium}
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
                   InputLabelProps={{ style: { fontSize: 20 } }}

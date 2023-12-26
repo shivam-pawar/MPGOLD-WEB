@@ -103,11 +103,11 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
             )}
             {isGold === "gold" ? (
               <div className="weight">
-                WEIGHT : {customerValues.weight + " gram"}
+                WEIGHT : {customerValues.weight + " gm"}
               </div>
             ) : (
               <div className="silver-weight">
-                WEIGHT : {customerValues.weight + " gram"}
+                WEIGHT : {customerValues.weight + " gm"}
               </div>
             )}
           </div>
@@ -218,10 +218,8 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
                 </div>
               </div>
               <div className="element-block">
-                <div className="elements">Bismuth</div>
-                <div className="percentage">
-                  &nbsp; {concentrations.bismuth}
-                </div>
+                <div className="elements">Indium</div>
+                <div className="percentage">&nbsp; {concentrations.indium}</div>
               </div>
             </div>
           </div>
@@ -259,11 +257,11 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
               )}
               {isGold === "gold" ? (
                 <div className="weight">
-                  WEIGHT : {customerValues.weight + " gram"}
+                  WEIGHT : {customerValues.weight + " gm"}
                 </div>
               ) : (
                 <div className="silver-weight">
-                  WEIGHT : {customerValues.weight + " gram"}
+                  WEIGHT : {customerValues.weight + " gm"}
                 </div>
               )}
             </div>
@@ -382,9 +380,9 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
                   </div>
                 </div>
                 <div className="element-block">
-                  <div className="elements">Bismuth</div>
+                  <div className="elements">Indium</div>
                   <div className="percentage">
-                    &nbsp; {concentrations.bismuth}
+                    &nbsp; {concentrations.indium}
                   </div>
                 </div>
               </div>

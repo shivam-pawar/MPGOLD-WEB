@@ -187,7 +187,7 @@ function Collection() {
                 {silverData + goldData}
               </Typography>
               <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                (Gold + Silver)
+                ({data?.length})
               </Typography>
             </CardContent>
           </Card>
