@@ -429,7 +429,7 @@ function UserForm() {
                   id="standard-indium"
                   variant="outlined"
                   label="Indium"
-                  name="Indium"
+                  name="indium"
                   defaultValue={concentrations.indium}
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
