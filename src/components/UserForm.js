@@ -384,7 +384,17 @@ function UserForm() {
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
                   InputLabelProps={{ style: { fontSize: 20 } }}
-                />{" "}
+                />
+                <TextField
+                  id="standard-indium"
+                  variant="outlined"
+                  label="Indium"
+                  name="indium"
+                  defaultValue={concentrations.indium}
+                  onChange={handleConcentrationsChange}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
+                />
                 <TextField
                   id="standard-rhodium"
                   variant="outlined"
@@ -424,17 +434,7 @@ function UserForm() {
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
                   InputLabelProps={{ style: { fontSize: 20 } }}
-                />{" "}
-                <TextField
-                  id="standard-indium"
-                  variant="outlined"
-                  label="Indium"
-                  name="indium"
-                  defaultValue={concentrations.indium}
-                  onChange={handleConcentrationsChange}
-                  inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
-                />{" "}
+                />
                 <TextField
                   id="standard-palladium"
                   variant="outlined"
