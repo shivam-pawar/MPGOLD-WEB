@@ -296,9 +296,10 @@ function UserForm() {
                 <Checkbox
                   checked={editDateChecked}
                   onChange={handleEditDateChange}
+                  tabIndex={-1}
                 />
               }
-              label="Edit date manually"
+              label="Edit Date and Time"
             />
           </form>
 
@@ -308,203 +309,323 @@ function UserForm() {
                 <TextField
                   id="standard-gold"
                   variant="outlined"
-                  label="Gold"
+                  label="GOLD"
                   name="gold"
                   defaultValue={concentrations.gold}
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: 18,
+                      color: "black",
+                      fontWeight: "bold",
+                    },
+                  }}
                 />
                 <TextField
                   id="standard-silver"
                   variant="outlined"
-                  label="Silver"
+                  label="SILVER"
                   name="silver"
                   defaultValue={concentrations.silver}
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: 18,
+                      color: "black",
+                      fontWeight: "bold",
+                    },
+                  }}
                 />
                 <TextField
                   id="standard-copper"
                   variant="outlined"
-                  label="Copper"
+                  label="COPPER"
                   name="copper"
                   value={concentrations.copper}
                   onChange={handleConcentrationsChange}
                   disabled
                   inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: 18,
+                      color: "black",
+                      fontWeight: "bold",
+                    },
+                  }}
                 />
                 <TextField
                   id="standard-zinc"
                   variant="outlined"
-                  label="Zinc"
+                  label="ZINC"
                   name="zinc"
                   defaultValue={concentrations.zinc}
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: 18,
+                      color: "black",
+                      fontWeight: "bold",
+                    },
+                  }}
                 />
                 <TextField
                   id="standard-cadmium"
                   variant="outlined"
-                  label="Cadmium"
+                  label="CADMIUM"
                   name="cadmium"
                   defaultValue={concentrations.cadmium}
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
-                />
-                <TextField
-                  id="standard-lead"
-                  variant="outlined"
-                  label="Lead"
-                  name="lead"
-                  defaultValue={concentrations.lead}
-                  onChange={handleConcentrationsChange}
-                  inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: 18,
+                      color: "black",
+                      fontWeight: "bold",
+                    },
+                  }}
                 />
                 <TextField
                   id="standard-nickel"
                   variant="outlined"
-                  label="Nickel"
+                  label="NICKEL"
                   name="nickel"
                   defaultValue={concentrations.nickel}
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
-                />
-                <TextField
-                  id="standard-iron"
-                  variant="outlined"
-                  label="Iron"
-                  name="iron"
-                  defaultValue={concentrations.iron}
-                  onChange={handleConcentrationsChange}
-                  inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
-                />
-                <TextField
-                  id="standard-tin"
-                  variant="outlined"
-                  label="Tin"
-                  name="tin"
-                  defaultValue={concentrations.tin}
-                  onChange={handleConcentrationsChange}
-                  inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
-                />
-                <TextField
-                  id="standard-iridium"
-                  variant="outlined"
-                  label="Iridium"
-                  name="iridium"
-                  defaultValue={concentrations.iridium}
-                  onChange={handleConcentrationsChange}
-                  inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
-                />
-                <TextField
-                  id="standard-ruthenium"
-                  variant="outlined"
-                  label="Ruthenium"
-                  name="ruthenium"
-                  defaultValue={concentrations.ruthenium}
-                  onChange={handleConcentrationsChange}
-                  inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
-                />
-                <TextField
-                  id="standard-osmium"
-                  variant="outlined"
-                  label="Osmium"
-                  name="osmium"
-                  defaultValue={concentrations.osmium}
-                  onChange={handleConcentrationsChange}
-                  inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: 18,
+                      color: "black",
+                      fontWeight: "bold",
+                    },
+                  }}
                 />
                 <TextField
                   id="standard-indium"
                   variant="outlined"
-                  label="Indium"
+                  label="INDIUM"
                   name="indium"
                   defaultValue={concentrations.indium}
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: 18,
+                      color: "black",
+                      fontWeight: "bold",
+                    },
+                  }}
+                />
+                <TextField
+                  id="standard-lead"
+                  variant="outlined"
+                  label="LEAD"
+                  name="lead"
+                  defaultValue={concentrations.lead}
+                  onChange={handleConcentrationsChange}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: 18,
+                      color: "black",
+                      fontWeight: "bold",
+                    },
+                  }}
+                />
+                <TextField
+                  id="standard-ruthenium"
+                  variant="outlined"
+                  label="RUTHENIUM"
+                  name="ruthenium"
+                  defaultValue={concentrations.ruthenium}
+                  onChange={handleConcentrationsChange}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: 18,
+                      color: "black",
+                      fontWeight: "bold",
+                    },
+                  }}
+                />
+                <TextField
+                  id="standard-iridium"
+                  variant="outlined"
+                  label="IRIDIUM"
+                  name="iridium"
+                  defaultValue={concentrations.iridium}
+                  onChange={handleConcentrationsChange}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: 18,
+                      color: "black",
+                      fontWeight: "bold",
+                    },
+                  }}
+                />
+                <TextField
+                  id="standard-osmium"
+                  variant="outlined"
+                  label="OSMIUM"
+                  name="osmium"
+                  defaultValue={concentrations.osmium}
+                  onChange={handleConcentrationsChange}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: 18,
+                      color: "black",
+                      fontWeight: "bold",
+                    },
+                  }}
+                />
+                <TextField
+                  id="standard-iron"
+                  variant="outlined"
+                  label="IRON"
+                  name="iron"
+                  defaultValue={concentrations.iron}
+                  onChange={handleConcentrationsChange}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: 18,
+                      color: "black",
+                      fontWeight: "bold",
+                    },
+                  }}
+                />
+                <TextField
+                  id="standard-tin"
+                  variant="outlined"
+                  label="TIN"
+                  name="tin"
+                  defaultValue={concentrations.tin}
+                  onChange={handleConcentrationsChange}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: 18,
+                      color: "black",
+                      fontWeight: "bold",
+                    },
+                  }}
                 />
                 <TextField
                   id="standard-manganese"
                   variant="outlined"
-                  label="Manganese"
+                  label="MANGANESE"
                   name="manganese"
                   defaultValue={concentrations.manganese}
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: 18,
+                      color: "black",
+                      fontWeight: "bold",
+                    },
+                  }}
                 />
                 <TextField
                   id="standard-rhodium"
                   variant="outlined"
-                  label="Rhodium"
+                  label="RHODIUM"
                   name="rhodium"
                   defaultValue={concentrations.rhodium}
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: 18,
+                      color: "black",
+                      fontWeight: "bold",
+                    },
+                  }}
                 />
                 <TextField
                   id="standard-platinum"
                   variant="outlined"
-                  label="Platinum"
+                  label="PLATINUM"
                   name="platinum"
                   defaultValue={concentrations.platinum}
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: 18,
+                      color: "black",
+                      fontWeight: "bold",
+                    },
+                  }}
                 />
                 <TextField
                   id="standard-palladium"
                   variant="outlined"
-                  label="Palladium"
+                  label="PALLADIUM"
                   name="palladium"
                   defaultValue={concentrations.palladium}
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: 18,
+                      color: "black",
+                      fontWeight: "bold",
+                    },
+                  }}
                 />
                 <TextField
                   id="standard-cobalt"
                   variant="outlined"
-                  label="Cobalt"
+                  label="COBALT"
                   name="cobalt"
                   defaultValue={concentrations.cobalt}
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: 18,
+                      color: "black",
+                      fontWeight: "bold",
+                    },
+                  }}
                 />
                 <TextField
                   id="standard-rhenium"
                   variant="outlined"
-                  label="Rhenium"
+                  label="RHENIUM"
                   name="rhenium"
                   defaultValue={concentrations.rhenium}
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: 18,
+                      color: "black",
+                      fontWeight: "bold",
+                    },
+                  }}
                 />
                 <TextField
                   id="standard-tungsten"
                   variant="outlined"
-                  label="Tungsten"
+                  label="TUNGSTEN"
                   name="tungsten"
                   defaultValue={concentrations.tungsten}
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
+                  InputLabelProps={{
+                    style: {
+                      fontSize: 18,
+                      color: "black",
+                      fontWeight: "bold",
+                    },
+                  }}
                 />
               </form>
             </Grid>
