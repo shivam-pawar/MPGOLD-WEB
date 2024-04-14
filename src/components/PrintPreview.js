@@ -5,16 +5,21 @@ import firebaseDB from "../config/firebase";
 import LocalPrintshopIcon from "@material-ui/icons/LocalPrintshop";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 
-function PrintPreview({ customerValues, concentrations, isGold }) {
+function PrintPreview({
+  customerValues,
+  concentrations,
+  isGold,
+  editDateChecked,
+}) {
   const handlePostRequest = () => {
     const records = firebaseDB.ref(process.env.REACT_APP_DATABASE_REF);
     const customerName = handleCapitalization(customerValues.customerName);
     const sampleType = handleCapitalization(customerValues.sampleType);
     const dataToPush = {
       serial_number: customerValues.srNumber,
-      report_date: moment(Date().toLocaleString()).format(
-        "YYYY-MM-DDTHH:mm:ss"
-      ),
+      report_date: editDateChecked
+        ? customerValues.dateTime
+        : moment(Date().toLocaleString()).format("YYYY-MM-DDTHH:mm:ss"),
       customer_name: customerName,
       sample_type: sampleType,
       weight: customerValues.weight,
@@ -75,7 +80,12 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
               Name: {handleCapitalization(customerValues.customerName)}
             </div>
             <div className="customer-time">
-              Time: {moment(Date().toLocaleString()).format("hh:mm:ss a")}
+              Time:{" "}
+              {editDateChecked
+                ? moment(customerValues.dateTime.toLocaleString()).format(
+                    "hh:mm:ss a"
+                  )
+                : moment(Date().toLocaleString()).format("hh:mm:ss a")}
             </div>
             <div className="customer-sr">
               Serial No.: {customerValues.srNumber}
@@ -83,7 +93,12 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
           </div>
           <div className="customer-date-sample">
             <div className="customer-date">
-              Date: {moment(Date().toLocaleString()).format("Do MMMM YYYY")}
+              Date:{" "}
+              {editDateChecked
+                ? moment(customerValues.dateTime.toLocaleString()).format(
+                    "Do MMMM YYYY"
+                  )
+                : moment(Date().toLocaleString()).format("Do MMMM YYYY")}
             </div>
             <div className="customer-sample">
               Sample: {handleCapitalization(customerValues.sampleType)}
@@ -229,7 +244,12 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
                 Name: {handleCapitalization(customerValues.customerName)}
               </div>
               <div className="customer-time">
-                Time: {moment(Date().toLocaleString()).format("hh:mm:ss a")}
+                Time:{" "}
+                {editDateChecked
+                  ? moment(customerValues.dateTime.toLocaleString()).format(
+                      "hh:mm:ss a"
+                    )
+                  : moment(Date().toLocaleString()).format("hh:mm:ss a")}
               </div>
               <div className="customer-sr">
                 Serial No.: {customerValues.srNumber}
@@ -237,7 +257,12 @@ function PrintPreview({ customerValues, concentrations, isGold }) {
             </div>
             <div className="customer-date-sample">
               <div className="customer-date">
-                Date: {moment(Date().toLocaleString()).format("Do MMMM YYYY")}
+                Date:{" "}
+                {editDateChecked
+                  ? moment(customerValues.dateTime.toLocaleString()).format(
+                      "Do MMMM YYYY"
+                    )
+                  : moment(Date().toLocaleString()).format("Do MMMM YYYY")}
               </div>
               <div className="customer-sample">
                 Sample: {handleCapitalization(customerValues.sampleType)}

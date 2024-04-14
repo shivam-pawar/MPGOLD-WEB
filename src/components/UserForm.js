@@ -16,6 +16,7 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 import moment from "moment";
 import RecordDetails from "./RecordDetails";
 import PrintPreview from "./PrintPreview";
@@ -67,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
   },
   result: {
     "& > *": {
-      width: "16ch",
+      width: "14ch",
       margin: theme.spacing(2),
     },
   },
@@ -75,16 +76,19 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
 }));
-function UserForm() {
-  const componentRef = useRef();
 
+function UserForm() {
   const classes = useStyles();
+  const [editDateChecked, setEditDateChecked] = React.useState(false);
+
   const [customerValues, setCustomerValues] = React.useState({
     customerName: "",
     srNumber: 0,
     sampleType: "Dhali",
     weight: (0.0).toFixed(3),
-    dateTime: moment(Date().toLocaleString()).format("YYYY-MM-DDTHH:mm"),
+    dateTime: editDateChecked
+      ? null
+      : moment(Date().toLocaleString()).format("YYYY-MM-DDTHH:mm"),
     karat: "",
   });
 
@@ -110,14 +114,18 @@ function UserForm() {
     rhenium: "0.00",
     tungsten: "0.00",
   });
+
   const [value, setValue] = React.useState(0);
   const [isGold, setIsGold] = React.useState("gold");
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
   const handleReportChange = (event) => {
     setIsGold(event.target.value);
   };
+
   const handleConcentrationsChange = (e) => {
     const { value } = e.target;
     setConcentrations({
@@ -125,6 +133,7 @@ function UserForm() {
       [e.target.name]: parseFloat(value).toFixed(2),
     });
   };
+
   const handleCustomerDetails = (e) => {
     const { value } = e.target;
     setCustomerValues({
@@ -143,6 +152,17 @@ function UserForm() {
       karat: (concentrations.gold / 4.166667).toFixed(2),
     });
   }, [concentrations.gold]);
+
+  const handleEditDateChange = (event) => {
+    setEditDateChecked(event.target.checked);
+  };
+
+  const handleDatePickerChange = (event) => {
+    setCustomerValues({
+      ...customerValues,
+      dateTime: event.target.value,
+    });
+  };
 
   React.useEffect(() => {
     setConcentrations({
@@ -193,6 +213,7 @@ function UserForm() {
     concentrations.rhenium,
     concentrations.tungsten,
   ]);
+
   return (
     <React.Fragment>
       <span className="App-Header">
@@ -259,7 +280,8 @@ function UserForm() {
               }}
               name="dateTime"
               defaultValue={customerValues.dateTime}
-              disabled
+              disabled={!editDateChecked}
+              onChange={handleDatePickerChange}
             />
             <TextField
               id="standard-karat"
@@ -268,6 +290,15 @@ function UserForm() {
               value={customerValues.karat}
               onChange={handleCustomerDetails}
               disabled
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={editDateChecked}
+                  onChange={handleEditDateChange}
+                />
+              }
+              label="Edit date manually"
             />
           </form>
 
@@ -283,7 +314,7 @@ function UserForm() {
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
                   InputLabelProps={{ style: { fontSize: 20 } }}
-                />{" "}
+                />
                 <TextField
                   id="standard-silver"
                   variant="outlined"
@@ -293,7 +324,7 @@ function UserForm() {
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
                   InputLabelProps={{ style: { fontSize: 20 } }}
-                />{" "}
+                />
                 <TextField
                   id="standard-copper"
                   variant="outlined"
@@ -304,7 +335,7 @@ function UserForm() {
                   disabled
                   inputProps={{ style: { fontSize: 24 } }}
                   InputLabelProps={{ style: { fontSize: 20 } }}
-                />{" "}
+                />
                 <TextField
                   id="standard-zinc"
                   variant="outlined"
@@ -314,7 +345,7 @@ function UserForm() {
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
                   InputLabelProps={{ style: { fontSize: 20 } }}
-                />{" "}
+                />
                 <TextField
                   id="standard-cadmium"
                   variant="outlined"
@@ -324,37 +355,7 @@ function UserForm() {
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
                   InputLabelProps={{ style: { fontSize: 20 } }}
-                />{" "}
-                <TextField
-                  id="standard-iridium"
-                  variant="outlined"
-                  label="Iridium"
-                  name="iridium"
-                  defaultValue={concentrations.iridium}
-                  onChange={handleConcentrationsChange}
-                  inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
-                />{" "}
-                <TextField
-                  id="standard-ruthenium"
-                  variant="outlined"
-                  label="Ruthenium"
-                  name="ruthenium"
-                  defaultValue={concentrations.ruthenium}
-                  onChange={handleConcentrationsChange}
-                  inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
-                />{" "}
-                <TextField
-                  id="standard-osmium"
-                  variant="outlined"
-                  label="Osmium"
-                  name="osmium"
-                  defaultValue={concentrations.osmium}
-                  onChange={handleConcentrationsChange}
-                  inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
-                />{" "}
+                />
                 <TextField
                   id="standard-lead"
                   variant="outlined"
@@ -364,7 +365,17 @@ function UserForm() {
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
                   InputLabelProps={{ style: { fontSize: 20 } }}
-                />{" "}
+                />
+                <TextField
+                  id="standard-nickel"
+                  variant="outlined"
+                  label="Nickel"
+                  name="nickel"
+                  defaultValue={concentrations.nickel}
+                  onChange={handleConcentrationsChange}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
+                />
                 <TextField
                   id="standard-iron"
                   variant="outlined"
@@ -374,13 +385,43 @@ function UserForm() {
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
                   InputLabelProps={{ style: { fontSize: 20 } }}
-                />{" "}
+                />
                 <TextField
-                  id="standard-nickel"
+                  id="standard-tin"
                   variant="outlined"
-                  label="Nickel"
-                  name="nickel"
-                  defaultValue={concentrations.nickel}
+                  label="Tin"
+                  name="tin"
+                  defaultValue={concentrations.tin}
+                  onChange={handleConcentrationsChange}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
+                />
+                <TextField
+                  id="standard-iridium"
+                  variant="outlined"
+                  label="Iridium"
+                  name="iridium"
+                  defaultValue={concentrations.iridium}
+                  onChange={handleConcentrationsChange}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
+                />
+                <TextField
+                  id="standard-ruthenium"
+                  variant="outlined"
+                  label="Ruthenium"
+                  name="ruthenium"
+                  defaultValue={concentrations.ruthenium}
+                  onChange={handleConcentrationsChange}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
+                />
+                <TextField
+                  id="standard-osmium"
+                  variant="outlined"
+                  label="Osmium"
+                  name="osmium"
+                  defaultValue={concentrations.osmium}
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
                   InputLabelProps={{ style: { fontSize: 20 } }}
@@ -396,6 +437,16 @@ function UserForm() {
                   InputLabelProps={{ style: { fontSize: 20 } }}
                 />
                 <TextField
+                  id="standard-manganese"
+                  variant="outlined"
+                  label="Manganese"
+                  name="manganese"
+                  defaultValue={concentrations.manganese}
+                  onChange={handleConcentrationsChange}
+                  inputProps={{ style: { fontSize: 24 } }}
+                  InputLabelProps={{ style: { fontSize: 20 } }}
+                />
+                <TextField
                   id="standard-rhodium"
                   variant="outlined"
                   label="Rhodium"
@@ -405,26 +456,6 @@ function UserForm() {
                   inputProps={{ style: { fontSize: 24 } }}
                   InputLabelProps={{ style: { fontSize: 20 } }}
                 />
-                <TextField
-                  id="standard-manganese"
-                  variant="outlined"
-                  label="Manganese"
-                  name="manganese"
-                  defaultValue={concentrations.manganese}
-                  onChange={handleConcentrationsChange}
-                  inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
-                />{" "}
-                <TextField
-                  id="standard-tin"
-                  variant="outlined"
-                  label="Tin"
-                  name="tin"
-                  defaultValue={concentrations.tin}
-                  onChange={handleConcentrationsChange}
-                  inputProps={{ style: { fontSize: 24 } }}
-                  InputLabelProps={{ style: { fontSize: 20 } }}
-                />{" "}
                 <TextField
                   id="standard-platinum"
                   variant="outlined"
@@ -444,7 +475,7 @@ function UserForm() {
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
                   InputLabelProps={{ style: { fontSize: 20 } }}
-                />{" "}
+                />
                 <TextField
                   id="standard-cobalt"
                   variant="outlined"
@@ -454,7 +485,7 @@ function UserForm() {
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
                   InputLabelProps={{ style: { fontSize: 20 } }}
-                />{" "}
+                />
                 <TextField
                   id="standard-rhenium"
                   variant="outlined"
@@ -464,7 +495,7 @@ function UserForm() {
                   onChange={handleConcentrationsChange}
                   inputProps={{ style: { fontSize: 24 } }}
                   InputLabelProps={{ style: { fontSize: 20 } }}
-                />{" "}
+                />
                 <TextField
                   id="standard-tungsten"
                   variant="outlined"
@@ -530,6 +561,7 @@ function UserForm() {
           customerValues={customerValues}
           concentrations={concentrations}
           isGold={isGold}
+          editDateChecked={editDateChecked}
         />
       </TabPanel>
       <TabPanel value={value} index={2}>
